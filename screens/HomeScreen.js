@@ -30,22 +30,26 @@ export default function HomeScreen() {
             style={styles.welcomeImage}
           />
         </View>
-        <CardDeals Nama="Test" Alamat="Test" label="Test" />
-        <TextInput
-          label="text"
-          error="text"
-          placeholder="text"
-          required={false}
-          border={true}
-        />
-        <TextInput
-          label="text"
-          error="text"
-          placeholder="text"
-          required={false}
-          border={false}
-        />
         <View style={styles.getStartedContainer}>
+          <CardDeals Nama="Test" Alamat="Test" label="Test" />
+          <TextInput
+            label="text"
+            error="text"
+            placeholder="text"
+            required={false}
+            border={true}
+            containerWidth="90%"
+            containerHeight={45}
+          />
+          <TextInput
+            label="text"
+            error="text"
+            placeholder="text"
+            required={false}
+            border={false}
+            containerWidth="90%"
+            containerHeight={45}
+          />
           <DevelopmentModeNotice />
 
           <Text style={styles.getStartedText}>Get started by opening</Text>
