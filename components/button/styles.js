@@ -1,6 +1,6 @@
-import EStyleSheet from "react-native-extended-stylesheet";
+import { StyleSheet } from "react-native";
 
-const styles = EStyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     backgroundColor: "transparent",
     height: 20,
@@ -18,12 +18,7 @@ const styles = EStyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     alignContent: "center",
-    "@media ios": {
-      shadowColor: "#d8d8d8"
-    },
-    "@media android": {
-      shadowColor: "black"
-    },
+    shadowColor: "black",
     shadowOffset: {
       width: 0,
       height: 3
@@ -34,12 +29,7 @@ const styles = EStyleSheet.create({
     shadowOpacity: 1.0
   },
   text: {
-    "@media ios": {
-      fontWeight: "600"
-    },
-    "@media android": {
-      fontWeight: "300"
-    },
+    fontWeight: "300",
     fontSize: 15,
     color: "white"
   }

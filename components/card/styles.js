@@ -1,10 +1,9 @@
-import EStyleSheet from "react-native-extended-stylesheet";
+import { StyleSheet } from "react-native";
 
-const styles = EStyleSheet.create({
+const styles = StyleSheet.create({
   top20: {
     top: 20
   },
-  $goldcolor: "#e6ca6b",
   width50: {
     width: "50%"
   },
@@ -38,16 +37,9 @@ const styles = EStyleSheet.create({
     fontSize: 12,
     color: "black",
     textAlign: "center",
-    "@media ios": {
-      fontWeight: "600",
-      zIndex: 5,
-      elevation: 3
-    },
-    "@media android": {
-      fontWeight: "300",
-      zIndex: 0,
-      elevation: 0
-    }
+    fontWeight: "300",
+    zIndex: 0,
+    elevation: 0
   },
   text16: {
     fontSize: 16,
@@ -67,12 +59,7 @@ const styles = EStyleSheet.create({
     width: "100%",
     marginBottom: 10,
     marginTop: 10,
-    "@media ios": {
-      shadowColor: "#d8d8d8"
-    },
-    "@media android": {
-      shadowColor: "black"
-    },
+    shadowColor: "black",
     shadowOffset: {
       width: 0,
       height: 3

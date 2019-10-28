@@ -74,7 +74,7 @@ class textInput extends Component {
       textInputStyles.push({ width: containerWidth });
     }
     if (disableInput == "disable") {
-      textInputStyles.push({ backgroundColor: styles.$disabelColor });
+      textInputStyles.push({ backgroundColor: "#eee" });
     }
     if (containerHeight) {
       textInputStyles.push({ height: containerHeight });
@@ -87,11 +87,11 @@ class textInput extends Component {
     }
     if (textColor) {
       textStyle.push({ color: textColor });
-      textStyle.push({ borderBottomColor: styles.$blacklight2color });
+      textStyle.push({ borderBottomColor: "rgba(90, 90, 90, 0.2)" });
       labelStyle.push({
         color: this.animatedIsFocused.interpolate({
           inputRange: [0, 1],
-          outputRange: [styles.$blacklight2color, styles.$blacklight2color]
+          outputRange: ["rgba(90, 90, 90, 0.2)", "rgba(90, 90, 90, 0.2)"]
         })
       });
     }
