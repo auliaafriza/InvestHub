@@ -8,7 +8,7 @@ import HomeScreen from "../screens/HomeScreen";
 import LinksScreen from "../screens/LinksScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 
-const HomeStack = createStackNavigator({
+export const HomeStack = createStackNavigator({
   Home: {
     screen: HomeScreen,
     navigationOptions: {
@@ -17,7 +17,7 @@ const HomeStack = createStackNavigator({
   }
 });
 
-const LinksStack = createStackNavigator({
+export const LinksStack = createStackNavigator({
   Links: {
     screen: LinksScreen,
     navigationOptions: {
@@ -26,7 +26,7 @@ const LinksStack = createStackNavigator({
   }
 });
 
-const SettingsStack = createStackNavigator({
+export const SettingsStack = createStackNavigator({
   Settings: {
     screen: SettingsScreen,
     navigationOptions: {
@@ -35,7 +35,7 @@ const SettingsStack = createStackNavigator({
   }
 });
 
-const tabNavigator = createBottomTabNavigator(
+export const tabNavigator = createBottomTabNavigator(
   {
     Home: {
       screen: HomeStack,
@@ -97,5 +97,3 @@ const tabNavigator = createBottomTabNavigator(
     }
   }
 );
-
-export default tabNavigator;

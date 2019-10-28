@@ -20,7 +20,7 @@ const cardDeals = ({
         <Label
           label={label}
           color1="#fffd9b"
-          color2={styles.$goldcolor}
+          color2="#e6ca6b"
           color3="#b2993d"
           color="#b2993d"
           colorFont="black"
@@ -46,7 +46,7 @@ const cardDeals = ({
                 buttonWidth="90%"
                 buttonHeight={40}
                 bold
-                buttonColor={styles.$goldcolor}
+                buttonColor="#e6ca6b"
                 textColor="black"
                 onPress={onPressSeeDetail}
               />
@@ -57,7 +57,7 @@ const cardDeals = ({
                 buttonWidth="90%"
                 buttonHeight={40}
                 bold
-                buttonColor={styles.$goldcolor}
+                buttonColor="#e6ca6b"
                 textColor="black"
                 onPress={onPressCancel}
               />

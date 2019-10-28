@@ -1,6 +1,6 @@
-import EStyleSheet from "react-native-extended-stylesheet";
+import { StyleSheet } from "react-native";
 
-const styles = EStyleSheet.create({
+const styles = StyleSheet.create({
   text: {
     height: 26,
     fontSize: 18,
@@ -51,12 +51,7 @@ const styles = EStyleSheet.create({
   colorBlackLight: { color: "#252525" },
   colorRed: { color: "#f44336" },
   textSemiBold: {
-    "@media ios": {
-      fontWeight: "300"
-    },
-    "@media android": {
-      fontWeight: "400"
-    }
+    fontWeight: "400"
   },
   marginBottom10: {
     marginBottom: 10
@@ -68,9 +63,7 @@ const styles = EStyleSheet.create({
     fontSize: 12,
     color: "#f44336",
     textAlign: "auto"
-  },
-  $disabelColor: "#eee",
-  $blacklight2color: "rgba(90, 90, 90, 0.2)"
+  }
 });
 
 export default styles;
