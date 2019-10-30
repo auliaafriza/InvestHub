@@ -38,7 +38,7 @@ const formLogin = ({
         />
         <Button
           text="Submit"
-          buttonWidth="90%"
+          buttonWidth="70%"
           buttonHeight={40}
           bold
           buttonColor="white"

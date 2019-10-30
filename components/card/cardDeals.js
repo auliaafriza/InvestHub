@@ -33,13 +33,14 @@ const cardDeals = ({
             style={[
               styles.row100,
               styles.paddingHorizontal20,
-              styles.positionCard
+              styles.positionCard,
+              styles.paddingBottom10
             ]}
           >
             <Text style={styles.text16}>{Nama}</Text>
             <Text style={styles.text16}>{Alamat}</Text>
           </View>
-          <View style={styles.row100}>
+          <View style={[styles.row100, styles.paddingBottom10]}>
             <View style={styles.width50}>
               <Button
                 text="See Detail"
