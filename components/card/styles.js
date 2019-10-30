@@ -97,6 +97,9 @@ const styles = StyleSheet.create({
     top: 80,
     left: 0,
     right: 0
+  },
+  paddingBottom10: {
+    paddingBottom: 10
   }
 });
 
