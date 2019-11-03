@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, StatusBar } from "react-native";
 import { styles } from "../styles";
 import { CardDeals } from "../../components/card";
 import PropTypes from "prop-types";
@@ -8,7 +8,17 @@ import { SearchBar } from "react-native-elements";
 const formDeals = ({ data, handleCancel, handleDetail }) => {
   return (
     <View style={styles.container}>
-      <SearchBar lightTheme placeholder="Try 'Indonesia' " />
+      <SearchBar
+        //clearIcon={this.state.searchClearIcon}
+        searchIcon={true}
+        //onChangeText={this._handleSearch}
+        placeholder="Type Here..."
+        containerStyle={styles.searcBarInputStyle}
+        inputContainerStyle={styles.searcBarInputStyle}
+        inputStyle={styles.searcBarInputStyle}
+        underlineColorAndroid="white"
+        //value={this.state.searchText}
+      />
       <View style={[styles.containerForm, styles.padding40]}>
         <Text style={{ fontWeight: "bold" }}>List Of Investasi</Text>
         <CardDeals

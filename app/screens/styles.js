@@ -8,6 +8,13 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#efefef"
   },
+  searchBarList: {
+    backgroundColor: "white",
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: "white"
+  },
+  searcBarInputStyle: { backgroundColor: "#f4f4f4" },
   center: {
     justifyContent: "center",
     alignItems: "center"

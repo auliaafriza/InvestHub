@@ -94,6 +94,14 @@ const styles = StyleSheet.create({
   paddingHorizontal20: {
     paddingHorizontal: 20
   },
+  styleRowButton: {
+    flexDirection: "row",
+    width: "100%",
+    justifyContent: "space-between",
+    paddingBottom: 10,
+    paddingLeft: 10,
+    paddingRight: 10
+  },
   row100: {
     flexDirection: "row",
     width: "100%"
@@ -107,8 +115,11 @@ const styles = StyleSheet.create({
   paddingBottom10: {
     paddingBottom: 10
   },
-  padding5: {
-    padding: 5
+  paddingRight5: {
+    paddingRight: 5
+  },
+  paddingLeft5: {
+    paddingLeft: 5
   }
 });
 

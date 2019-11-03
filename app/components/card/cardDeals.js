@@ -46,13 +46,11 @@ const cardDeals = ({
             <Text style={styles.text16}>{Nama}</Text>
             <Text style={styles.text16}>{Alamat}</Text>
           </View>
-          <View
-            style={[styles.row100, styles.padding5, styles.paddingBottom10]}
-          >
-            <View style={styles.width50}>
+          <View style={styles.styleRowButton}>
+            <View style={[styles.width50, styles.paddingRight5]}>
               <Button
                 text="See Detail"
-                buttonWidth="90%"
+                buttonWidth="100%"
                 buttonHeight={40}
                 bold
                 buttonColor="#e6ca6b"
@@ -60,10 +58,10 @@ const cardDeals = ({
                 onPress={onPressSeeDetail}
               />
             </View>
-            <View style={styles.width50}>
+            <View style={[styles.width50, styles.paddingLeft5]}>
               <Button
                 text="Cancel"
-                buttonWidth="90%"
+                buttonWidth="100%"
                 buttonHeight={40}
                 bold
                 buttonColor="#e6ca6b"
