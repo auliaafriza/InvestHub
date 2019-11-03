@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import FormLogin from "./formLogin";
-import PropTypes from "prop-types";
-import { Alert } from "react-native";
 
 class login extends Component {
   constructor(props) {
@@ -13,11 +11,6 @@ class login extends Component {
       }
     };
   }
-
-  // static propTypes = {
-  //   dispatch: PropTypes.func,
-  //   navigation: PropTypes.object
-  // };
 
   handleLogin = () => {
     this.props.navigation.navigate("App");

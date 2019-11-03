@@ -43,6 +43,7 @@ class textInput extends Component {
       required = false,
       multiline,
       border = true,
+      ColorborderBottom,
       ...props
     } = this.props;
     const labelStyle = [
@@ -87,7 +88,9 @@ class textInput extends Component {
     }
     if (textColor) {
       textStyle.push({ color: textColor });
-      textStyle.push({ borderBottomColor: "rgba(90, 90, 90, 0.2)" });
+      textStyle.push({
+        borderBottomColor: "rgba(90, 90, 90, 0.2)"
+      });
       labelStyle.push({
         color: this.animatedIsFocused.interpolate({
           inputRange: [0, 1],
@@ -165,7 +168,8 @@ textInput.propTypes = {
   marginBottom: PropTypes.number,
   multiline: PropTypes.bool,
   required: PropTypes.bool,
-  border: PropTypes.bool
+  border: PropTypes.bool,
+  ColorborderBottom: PropTypes.string
 };
 
 export default textInput;

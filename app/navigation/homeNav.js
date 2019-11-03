@@ -1,57 +1,39 @@
 import React from "react";
+import { StatusBar } from "react-native";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { createMaterialTopTabNavigator } from "react-navigation-tabs";
-import home from "../screens/HomeScreen";
-import linkNav from "../screens/account/account";
-import settingNav from "../screens/detailPage/detailPage";
-import { Ionicons, SimpleLineIcons } from "@expo/vector-icons";
-
-export const LinkStack = createStackNavigator({
-  Link: {
-    screen: linkNav,
-    navigationOptions: {
-      header: null
-    }
-  }
-});
-
-export const SettingStack = createStackNavigator({
-  Setting: {
-    screen: settingNav,
-    navigationOptions: {
-      header: null
-    }
-  }
-});
-
-export const HomeStack = createStackNavigator({
-  Home: {
-    screen: home,
-    navigationOptions: {
-      header: () => null
-    }
-  }
-});
+import home from "../screens/home/home";
+import settingNav from "../screens/account/account";
+import notif from "../screens/notif/notif";
+import deals from "../screens/deals/DealPage";
+import { Ionicons, FontAwesome } from "@expo/vector-icons";
 
 const topNav = createMaterialTopTabNavigator(
   {
     Home: {
-      screen: HomeStack,
+      screen: home,
       navigationOptions: {
         title: "Home",
         header: null
       }
     },
-    Link: {
-      screen: LinkStack,
+    Deal: {
+      screen: deals,
       navigationOptions: {
-        title: "Link",
+        title: "Deals",
+        header: null
+      }
+    },
+    Notif: {
+      screen: notif,
+      navigationOptions: {
+        title: "Notif",
         header: null
       }
     },
     Setting: {
-      screen: SettingStack,
+      screen: settingNav,
       navigationOptions: {
         title: "Setting",
         header: null
@@ -64,8 +46,12 @@ const topNav = createMaterialTopTabNavigator(
         const { routeName } = navigation.state;
         if (routeName === "Home") {
           return <Ionicons name="md-home" size={18} color={tintColor} />;
-        } else if (routeName === "Link") {
-          return <SimpleLineIcons name="bag" size={18} color={tintColor} />;
+        } else if (routeName === "Deal") {
+          return <FontAwesome name="suitcase" size={18} color={tintColor} />;
+        } else if (routeName === "Notif") {
+          return (
+            <Ionicons name="md-notifications" size={18} color={tintColor} />
+          );
         } else if (routeName === "Setting") {
           return <Ionicons name="md-settings" size={18} color={tintColor} />;
         }
@@ -74,29 +60,32 @@ const topNav = createMaterialTopTabNavigator(
     tabBarPosition: "top",
     tabBarOptions: {
       showIcon: true,
-      activeTintColor: "#e6ca6b",
-      inactiveTintColor: "#efefef",
+      showLabel: true,
+      activeTintColor: "#800020",
+      inactiveTintColor: "#252525",
       style: {
-        backgroundColor: "#252525",
-        position: "absolute",
-        left: 0,
-        right: 0,
-        bottom: 0,
-        height: 60,
-        shadowColor: "#d3d3d3",
-        shadowOffset: {
-          width: 5,
-          height: 5
-        },
-        shadowRadius: 10,
-        shadowOpacity: 1,
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
-        borderTopWidth: 0,
-        elevation: 13
+        backgroundColor: "#efefef",
+        paddingTop: StatusBar.currentHeight
+      },
+      labelStyle: {
+        textAlign: "center",
+        fontSize: 12
+      },
+      indicatorStyle: {
+        borderBottomWidth: 2,
+        borderBottomColor: "#800020"
       }
     }
   }
 );
 
-export default createAppContainer(topNav);
+const App = createStackNavigator({
+  TabScreen: {
+    screen: topNav,
+    navigationOptions: {
+      header: null
+    }
+  }
+});
+
+export default createAppContainer(App);

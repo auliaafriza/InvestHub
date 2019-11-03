@@ -1,6 +1,6 @@
 import React from "react";
 import { View } from "react-native";
-import styles from "./styles";
+import { styles } from "../styles";
 import { TextInput } from "../../components/textInput";
 import { Button } from "../../components/button";
 import PropTypes from "prop-types";
