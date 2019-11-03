@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   },
   textInputNoBorder: {
     borderBottomWidth: 1,
-    borderBottomColor: "#E2E2E2E2",
+    borderBottomColor: "#4b4b4b",
     height: 45,
     fontSize: 18,
     color: "black"

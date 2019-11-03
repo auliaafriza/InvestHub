@@ -26,7 +26,7 @@ class detailPage extends Component {
       "My Alert Msg",
       [
         {
-          text: DetailPage.Name
+          text: "Ok"
         },
         {
           text: DetailPage.Alamat

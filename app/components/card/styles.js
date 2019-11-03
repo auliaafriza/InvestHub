@@ -4,8 +4,14 @@ const styles = StyleSheet.create({
   top20: {
     top: 20
   },
+  paddingTop40: {
+    paddingTop: 40
+  },
   width50: {
     width: "50%"
+  },
+  width100: {
+    width: "100%"
   },
   labelcontainer: {
     backgroundColor: "#e6ca6b",
@@ -100,6 +106,9 @@ const styles = StyleSheet.create({
   },
   paddingBottom10: {
     paddingBottom: 10
+  },
+  padding5: {
+    padding: 5
   }
 });
 

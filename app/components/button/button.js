@@ -49,15 +49,13 @@ const button = ({
     textStyles.push({ fontSize: textSize });
   }
   return (
-    <View style={containerStyles}>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={onPress}
-        disabled={disabled}
-      >
-        <Text style={textStyles}>{text}</Text>
-      </TouchableOpacity>
-    </View>
+    <TouchableOpacity
+      style={containerStyles}
+      onPress={onPress}
+      disabled={disabled}
+    >
+      <Text style={textStyles}>{text}</Text>
+    </TouchableOpacity>
   );
 };
 

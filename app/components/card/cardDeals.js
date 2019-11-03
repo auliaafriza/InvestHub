@@ -16,31 +16,39 @@ const cardDeals = ({
 }) => {
   return (
     <View style={styles.bottomMargin}>
-      <View style={[styles.ribbonPosition, styles.ribbonGoldIOS]}>
-        <Label
-          label={label}
-          color1="#fffd9b"
-          color2="#e6ca6b"
-          color3="#b2993d"
-          color="#b2993d"
-          colorFont="black"
-          widthlabel={80}
-        />
-      </View>
       <Card widthCard="95%">
+        <View
+          style={[
+            styles.row100,
+            styles.paddingHorizontal20,
+            styles.paddingBottom10
+          ]}
+        >
+          <Label
+            label={label}
+            color1="#fffd9b"
+            color2="#e6ca6b"
+            color3="#b2993d"
+            color="#b2993d"
+            colorFont="black"
+            widthlabel={80}
+          />
+        </View>
         <TouchableOpacity onPress={onPress}>
           <View
             style={[
-              styles.row100,
+              styles.width100,
               styles.paddingHorizontal20,
-              styles.positionCard,
-              styles.paddingBottom10
+              styles.paddingBottom10,
+              styles.paddingTop40
             ]}
           >
             <Text style={styles.text16}>{Nama}</Text>
             <Text style={styles.text16}>{Alamat}</Text>
           </View>
-          <View style={[styles.row100, styles.paddingBottom10]}>
+          <View
+            style={[styles.row100, styles.padding5, styles.paddingBottom10]}
+          >
             <View style={styles.width50}>
               <Button
                 text="See Detail"

@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "transparent",
     height: 20,
-    borderRadius: 30,
+    borderRadius: 10,
     alignItems: "center",
     justifyContent: "center",
     alignContent: "center",
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   containerShadow: {
     backgroundColor: "transparent",
     height: 20,
-    borderRadius: 30,
+    borderRadius: 10,
     alignItems: "center",
     justifyContent: "center",
     alignContent: "center",
