@@ -1,7 +1,6 @@
 import * as WebBrowser from "expo-web-browser";
 import React from "react";
 import {
-  Image,
   Platform,
   ScrollView,
   StyleSheet,
@@ -11,7 +10,6 @@ import {
 } from "react-native";
 import { CardDeals } from "../components/card";
 import { TextInput } from "../components/textInput";
-import { MonoText } from "../components/StyledText";
 
 export default function HomeScreen() {
   return (
@@ -20,18 +18,13 @@ export default function HomeScreen() {
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
       >
-        <View style={styles.welcomeContainer}>
-          <Image
-            source={
-              __DEV__
-                ? require("../assets/images/robot-dev.png")
-                : require("../assets/images/robot-prod.png")
-            }
-            style={styles.welcomeImage}
-          />
-        </View>
         <View style={styles.getStartedContainer}>
-          <CardDeals Nama="Test" Alamat="Test" label="Test" />
+          <CardDeals
+            Nama="Test"
+            Alamat="Test"
+            label="Test"
+            onPressSeeDetail={() => this.props.navigation.navigate("Login")}
+          />
           <TextInput
             label="text"
             error="text"
@@ -56,9 +49,7 @@ export default function HomeScreen() {
 
           <View
             style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
-          >
-            <MonoText>screens/HomeScreen.js</MonoText>
-          </View>
+          ></View>
 
           <Text style={styles.getStartedText}>
             Change this text and your app will automatically reload.
@@ -81,11 +72,7 @@ export default function HomeScreen() {
 
         <View
           style={[styles.codeHighlightContainer, styles.navigationFilename]}
-        >
-          <MonoText style={styles.codeHighlightText}>
-            navigation/MainTabNavigator.js
-          </MonoText>
-        </View>
+        ></View>
       </View>
     </View>
   );

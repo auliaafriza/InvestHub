@@ -6,44 +6,42 @@ import { Button } from "../../components/button";
 import PropTypes from "prop-types";
 
 const formLogin = ({
-  valueUsername,
-  valuePass,
-  onChangeTextPass,
-  onChangeTextUsername,
-  onPressSubmit
+  data,
+  handleInvest,
+  onChangeTextName,
+  onChangeTextEmail
 }) => {
   return (
     <View style={styles.container}>
       <View style={[styles.containerForm, styles.center, styles.padding40]}>
         <TextInput
-          label="Username"
-          placeholder="username"
+          label="Name"
+          placeholder="Name"
           required={false}
           border={true}
           containerWidth="100%"
           containerHeight={45}
-          value={valueUsername}
-          onChangeText={onChangeTextUsername}
+          value={data.Name}
+          onChangeText={onChangeTextName}
         />
         <TextInput
-          label="Password"
-          placeholder="Password"
+          label="Alamat"
+          placeholder="Alamat"
           required={false}
           border={true}
           containerWidth="100%"
           containerHeight={45}
-          value={valuePass}
-          onChangeText={onChangeTextPass}
-          secureTextEntry={true}
+          value={data.Email}
+          onChangeText={onChangeTextEmail}
         />
         <Button
-          text="Submit"
+          text="Invest"
           buttonWidth="90%"
           buttonHeight={40}
           bold
           buttonColor="white"
           textColor="black"
-          onPress={onPressSubmit}
+          onPress={handleInvest}
         />
       </View>
     </View>
@@ -51,11 +49,10 @@ const formLogin = ({
 };
 
 formLogin.propTypes = {
-  valueUsername: PropTypes.string,
-  valuePass: PropTypes.string,
-  onChangeTextPass: PropTypes.func,
-  onChangeTextUsername: PropTypes.func,
-  onPressSubmit: PropTypes.func
+  data: PropTypes.object,
+  handleInvest: PropTypes.func,
+  onChangeTextName: PropTypes.func,
+  onChangeTextEmail: PropTypes.func
 };
 
 export default formLogin;
