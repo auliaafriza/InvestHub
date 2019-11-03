@@ -5,7 +5,14 @@ import { TextInput } from "../../components/textInput";
 import { Button } from "../../components/button";
 import PropTypes from "prop-types";
 
-const formLogin = ({ data, handleInvest }) => {
+const formLogin = ({
+  data,
+  handleSave,
+  onChangeTextName,
+  onChangeTextEmail,
+  onChangeTextPengaruhModal,
+  onChangeTextKarateristikUsaha
+}) => {
   return (
     <View style={styles.container}>
       <View style={[styles.containerForm, styles.center, styles.padding40]}>
@@ -20,8 +27,8 @@ const formLogin = ({ data, handleInvest }) => {
           onChangeText={onChangeTextName}
         />
         <TextInput
-          label="Alamat"
-          placeholder="Alamat"
+          label="Email"
+          placeholder="Email"
           required={false}
           border={true}
           containerWidth="100%"
@@ -29,14 +36,34 @@ const formLogin = ({ data, handleInvest }) => {
           value={data.Email}
           onChangeText={onChangeTextEmail}
         />
+        <TextInput
+          label="Pengaruh Modal"
+          placeholder="Pengaruh Modal"
+          required={false}
+          border={true}
+          containerWidth="100%"
+          containerHeight={45}
+          value={data.PengaruhModal}
+          onChangeText={onChangeTextPengaruhModal}
+        />
+        <TextInput
+          label="Karakteristik Usaha"
+          placeholder="Karakteristik Usaha"
+          required={false}
+          border={true}
+          containerWidth="100%"
+          containerHeight={45}
+          value={data.KarakteristikUsaha}
+          onChangeText={onChangeTextKarateristikUsaha}
+        />
         <Button
-          text="Invest"
+          text="Simpan"
           buttonWidth="90%"
           buttonHeight={40}
           bold
           buttonColor="white"
           textColor="black"
-          onPress={handleInvest}
+          onPress={handleSave}
         />
       </View>
     </View>
@@ -45,7 +72,11 @@ const formLogin = ({ data, handleInvest }) => {
 
 formLogin.propTypes = {
   data: PropTypes.object,
-  handleInvest: PropTypes.func
+  handleSave: PropTypes.func,
+  onChangeTextName: PropTypes.func,
+  onChangeTextEmail: PropTypes.func,
+  onChangeTextPengaruhModal: PropTypes.func,
+  onChangeTextKarateristikUsaha: PropTypes.func
 };
 
 export default formLogin;

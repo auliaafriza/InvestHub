@@ -14,18 +14,13 @@ class login extends Component {
     };
   }
 
-  static propTypes = {
-    dispatch: PropTypes.func,
-    navigation: PropTypes.object
-  };
+  // static propTypes = {
+  //   dispatch: PropTypes.func,
+  //   navigation: PropTypes.object
+  // };
 
   handleLogin = () => {
-    Alert.alert("New version available", "Please, update app to new version", [
-      {
-        text: "Oke"
-      }
-    ]);
-    this.props.navigation.navigate("Home");
+    this.props.navigation.navigate("App");
   };
 
   render() {
@@ -43,7 +38,7 @@ class login extends Component {
             Login: { ...this.state.Login, Username: text }
           })
         }
-        onPressSubmit={this.handleLogin}
+        onPressSubmit={() => this.handleLogin()}
       />
     );
   }

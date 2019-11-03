@@ -7,11 +7,9 @@ import PropTypes from "prop-types";
 
 const formLogin = ({
   data,
-  handleSave,
+  handleInvest,
   onChangeTextName,
-  onChangeTextEmail,
-  onChangeTextPengaruhModal,
-  onChangeTextKarateristikUsaha
+  onChangeTextEmail
 }) => {
   return (
     <View style={styles.container}>
@@ -27,8 +25,8 @@ const formLogin = ({
           onChangeText={onChangeTextName}
         />
         <TextInput
-          label="Email"
-          placeholder="Email"
+          label="Alamat"
+          placeholder="Alamat"
           required={false}
           border={true}
           containerWidth="100%"
@@ -36,34 +34,14 @@ const formLogin = ({
           value={data.Email}
           onChangeText={onChangeTextEmail}
         />
-        <TextInput
-          label="Pengaruh Modal"
-          placeholder="Pengaruh Modal"
-          required={false}
-          border={true}
-          containerWidth="100%"
-          containerHeight={45}
-          value={data.PengaruhModal}
-          onChangeText={onChangeTextPengaruhModal}
-        />
-        <TextInput
-          label="Karakteristik Usaha"
-          placeholder="Karakteristik Usaha"
-          required={false}
-          border={true}
-          containerWidth="100%"
-          containerHeight={45}
-          value={data.KarakteristikUsaha}
-          onChangeText={onChangeTextKarateristikUsaha}
-        />
         <Button
-          text="Simpan"
+          text="Invest"
           buttonWidth="90%"
           buttonHeight={40}
           bold
           buttonColor="white"
           textColor="black"
-          onPress={handleSave}
+          onPress={handleInvest}
         />
       </View>
     </View>
@@ -71,11 +49,10 @@ const formLogin = ({
 };
 
 formLogin.propTypes = {
-  valueUsername: PropTypes.string,
-  valuePass: PropTypes.string,
-  onChangeTextPass: PropTypes.func,
-  onChangeTextUsername: PropTypes.func,
-  onPressSubmit: PropTypes.func
+  data: PropTypes.object,
+  handleInvest: PropTypes.func,
+  onChangeTextName: PropTypes.func,
+  onChangeTextEmail: PropTypes.func
 };
 
 export default formLogin;
