@@ -8,6 +8,9 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#efefef"
   },
+  marginBottom10: {
+    marginBottom: 10
+  },
   searchBarList: {
     backgroundColor: "white",
     borderWidth: 1,

@@ -1,6 +1,6 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
+  "expoServerPort": null,
   "packagerPort": 19001,
   "packagerPid": 58048,
   "expoServerNgrokUrl": "https://zs-dcc.auliaafriza.investhub.exp.direct",

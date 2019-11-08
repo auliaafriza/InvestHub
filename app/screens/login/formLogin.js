@@ -36,15 +36,17 @@ const formLogin = ({
           onChangeText={onChangeTextPass}
           secureTextEntry={true}
         />
-        <Button
-          text="Submit"
-          buttonWidth="70%"
-          buttonHeight={40}
-          bold
-          buttonColor="white"
-          textColor="black"
-          onPress={onPressSubmit}
-        />
+        <View style={[styles.row100, styles.marginBottom10]}>
+          <Button
+            text="Submit"
+            buttonWidth="70%"
+            buttonHeight={40}
+            bold
+            buttonColor="white"
+            textColor="black"
+            onPress={onPressSubmit}
+          />
+        </View>
       </View>
     </View>
   );
