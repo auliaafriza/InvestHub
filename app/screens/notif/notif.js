@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { View } from "react-native";
 import FormNotif from "./formNotif";
 import { styles } from "../styles";
-
+import { groupArrays } from "../../components/globalFunction/groupingArrayByDate";
 class notif extends Component {
   constructor(props) {
     super(props);
@@ -36,9 +36,11 @@ class notif extends Component {
     };
   }
   render() {
+    const { data } = this.state;
+    const listOfNotif = groupArrays;
     return (
-      <View style={styles.container}>
-        <FormNotif data={this.state.data} />
+      <View style={styles.containerWhite}>
+        <FormNotif data={this.state.data} listOfNotif={listOfNotif} />
       </View>
     );
   }

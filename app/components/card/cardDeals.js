@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import Card from "./card";
 import Label from "./label";
 import { Button } from "../button";
+import { mainColor, color1, color2, color3, color } from "../../screens/styles";
 
 const cardDeals = ({
   Nama,
@@ -26,11 +27,11 @@ const cardDeals = ({
         >
           <Label
             label={label}
-            color1="#fffd9b"
-            color2="#e6ca6b"
-            color3="#b2993d"
-            color="#b2993d"
-            colorFont="black"
+            color1={color1}
+            color2={color2}
+            color3={color3}
+            color={color}
+            colorFont="white"
             widthlabel={80}
           />
         </View>
@@ -48,25 +49,37 @@ const cardDeals = ({
           </View>
           <View style={styles.styleRowButton}>
             <View style={[styles.width50, styles.paddingRight5]}>
-              <Button
+              {/* <Button
                 text="See Detail"
                 buttonWidth="100%"
                 buttonHeight={40}
                 bold
-                buttonColor="#e6ca6b"
-                textColor="black"
+                // buttonColor="#e6ca6b"
+                buttonColor={mainColor}
+                textColor="white"
                 onPress={onPressSeeDetail}
-              />
+              /> */}
             </View>
             <View style={[styles.width50, styles.paddingLeft5]}>
-              <Button
+              {/* <Button
                 text="Cancel"
                 buttonWidth="100%"
                 buttonHeight={40}
                 bold
-                buttonColor="#e6ca6b"
-                textColor="black"
+                // buttonColor="#e6ca6b"
+                buttonColor={mainColor}
+                textColor="white"
                 onPress={onPressCancel}
+              />  */}
+              <Button
+                text="See Detail"
+                buttonWidth="90%"
+                buttonHeight={40}
+                bold
+                // buttonColor="#e6ca6b"
+                buttonColor={mainColor}
+                textColor="white"
+                onPress={onPressSeeDetail}
               />
             </View>
           </View>
