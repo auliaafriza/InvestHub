@@ -15,6 +15,7 @@ const card = ({
   border,
   overflow = false
 }) => {
+  // const containerStyles = [styles.containerCardView];
   const containerStyles = [styles.containerCardView];
   if (alignself) {
     containerStyles.push({ alignSelf: alignself });

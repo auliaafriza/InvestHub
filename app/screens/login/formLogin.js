@@ -1,8 +1,8 @@
 import React from "react";
-import { View } from "react-native";
-import { styles } from "../styles";
+import { View, Image, Button } from "react-native";
+import { styles, color1 } from "../styles";
 import { TextInput } from "../../components/textInput";
-import { Button } from "../../components/button";
+// import { Button } from "../../components/button";
 import PropTypes from "prop-types";
 
 const formLogin = ({
@@ -14,16 +14,23 @@ const formLogin = ({
 }) => {
   return (
     <View style={styles.container}>
-      <View style={[styles.containerForm, styles.center, styles.padding40]}>
+      <Image
+        style={{ width: 360, height: 400 }}
+        // style={{ alignContent: "center" }}
+        source={require("../../../assets/images/Login.jpg")}
+        // width={1}
+      />
+      <View style={[styles.center, styles.paddingLogin]}>
         <TextInput
           label="Username"
           placeholder="username"
           required={false}
           border={true}
           containerWidth="100%"
-          containerHeight={45}
+          containerHeight={35}
           value={valueUsername}
           onChangeText={onChangeTextUsername}
+          marginBottom={0}
         />
         <TextInput
           label="Password"
@@ -31,20 +38,21 @@ const formLogin = ({
           required={false}
           border={true}
           containerWidth="100%"
-          containerHeight={45}
+          containerHeight={35}
           value={valuePass}
           onChangeText={onChangeTextPass}
           secureTextEntry={true}
         />
-        <Button
+        {/* <Button
           text="Submit"
-          buttonWidth="70%"
+          buttonWidth="20%"
           buttonHeight={40}
           bold
           buttonColor="white"
           textColor="black"
           onPress={onPressSubmit}
-        />
+        /> */}
+        <Button title="Sign In" onPress={onPressSubmit} color={color1} />
       </View>
     </View>
   );

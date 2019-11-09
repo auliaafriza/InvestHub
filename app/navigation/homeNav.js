@@ -8,6 +8,7 @@ import settingNav from "../screens/account/account";
 import notif from "../screens/notif/notif";
 import deals from "../screens/deals/DealPage";
 import { Ionicons, FontAwesome } from "@expo/vector-icons";
+import { mainColor, white, color1 } from "../screens/styles";
 
 const topNav = createMaterialTopTabNavigator(
   {
@@ -61,10 +62,13 @@ const topNav = createMaterialTopTabNavigator(
     tabBarOptions: {
       showIcon: true,
       showLabel: true,
-      activeTintColor: "#800020",
-      inactiveTintColor: "#252525",
+      // activeTintColor: "#800020",
+      // inactiveTintColor: "#252525",
+      activeTintColor: white,
+      inactiveTintColor: color1,
       style: {
-        backgroundColor: "#efefef",
+        // backgroundColor: "#efefef",
+        backgroundColor: mainColor,
         paddingTop: StatusBar.currentHeight
       },
       labelStyle: {
@@ -73,7 +77,8 @@ const topNav = createMaterialTopTabNavigator(
       },
       indicatorStyle: {
         borderBottomWidth: 2,
-        borderBottomColor: "#800020"
+        // borderBottomColor: "#800020"
+        borderBottomColor: white
       }
     }
   }

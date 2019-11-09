@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
-  colorBlackLight: { color: "#252525" },
+  colorBlackLight: { color: "#ffff" },
   colorRed: { color: "#f44336" },
   textSemiBold: {
     fontWeight: "400"

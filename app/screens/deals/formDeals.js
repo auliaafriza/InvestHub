@@ -7,7 +7,7 @@ import { SearchBar } from "react-native-elements";
 
 const formDeals = ({ data, handleCancel, handleDetail }) => {
   return (
-    <View style={styles.container}>
+    <View style={styles.containerWhite}>
       <SearchBar lightTheme placeholder="Try 'Indonesia' " />
       <View style={[styles.containerForm, styles.padding40]}>
         <Text style={{ fontWeight: "bold" }}>List Of Investasi</Text>

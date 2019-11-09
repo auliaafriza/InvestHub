@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-
+import { orange } from "../../screens/styles";
 const styles = StyleSheet.create({
   top20: {
     top: 20
@@ -14,7 +14,8 @@ const styles = StyleSheet.create({
     width: "100%"
   },
   labelcontainer: {
-    backgroundColor: "#e6ca6b",
+    // backgroundColor: "#e6ca6b",
+    backgroundColor: orange,
     width: 100,
     height: 20,
     zIndex: 4,
@@ -32,8 +33,10 @@ const styles = StyleSheet.create({
     borderRightWidth: 1,
     borderBottomWidth: 0,
     borderLeftWidth: 10,
-    borderTopColor: "#b2993d",
-    borderRightColor: "#b2993d",
+    // borderTopColor: "#b2993d",
+    // borderRightColor: "#b2993d",
+    borderTopColor: orange,
+    borderRightColor: orange,
     borderBottomColor: "transparent",
     borderLeftColor: "transparent",
     zIndex: 4,
@@ -61,7 +64,8 @@ const styles = StyleSheet.create({
     left: 10
   },
   containerCardView: {
-    backgroundColor: "#fefefe",
+    backgroundColor: "#f5f5fd",
+    // backgroundColor: orange,
     width: "100%",
     marginBottom: 10,
     marginTop: 10,
