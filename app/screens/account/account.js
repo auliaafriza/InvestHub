@@ -22,28 +22,46 @@ class account extends Component {
   };
 
   handleSave = () => {
-    // Alert.alert("New version available", "Please, update app to new version", [
-    //   {
-    //     text: "Oke"
-    //   }
-    // ]);
-    // this.props.navigation.navigate("Home");
     const { Account } = this.state;
     Alert.alert(
-      "Alert Title",
-      "My Alert Msg",
+      "Konfirmasi",
+      "Apakah Data yang di isi sudah benar ?",
+      [
+        // {
+        //   text: Account.Name
+        // },
+        // {
+        //   text: Account.Email
+        // },
+        // {
+        //   text: Account.PengaruhModal
+        // },
+        // {
+        //   text: Account.KarakteristikUsaha
+        // }
+        {
+          text: "Batal"
+        },
+        {
+          text: "Simpan",
+          onPress: () => console.log("Simpan")
+        }
+      ],
+      { cancelable: false }
+    );
+  };
+
+  handleLogout = () => {
+    Alert.alert(
+      "Konfirmasi",
+      "Apakah Anda Yakin untuk Keluar ?",
       [
         {
-          text: Account.Name
+          text: "Batal"
         },
         {
-          text: Account.Email
-        },
-        {
-          text: Account.PengaruhModal
-        },
-        {
-          text: Account.KarakteristikUsaha
+          text: "Keluar",
+          onPress: () => this.props.navigation.navigate("Auth")
         }
       ],
       { cancelable: false }
@@ -76,19 +94,7 @@ class account extends Component {
             Account: { ...this.state.Account, KarakteristikUsaha: text }
           })
         }
-        // valueUsername={this.state.Username}
-        // valuePass={this.state.Password}
-        // onChangeTextPass={text =>
-        //   this.setState({
-        //     Login: { ...this.state.Login, Password: text }
-        //   })
-        // }
-        // onChangeTextUsername={text =>
-        //   this.setState({
-        //     Login: { ...this.state.Login, Username: text }
-        //   })
-        // }
-        // onPressSubmit={this.handleLogin}
+        handleLogout={this.handleLogout}
       />
     );
   }

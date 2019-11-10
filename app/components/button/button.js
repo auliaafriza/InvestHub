@@ -16,9 +16,13 @@ const button = ({
   colorBorderBottom,
   radiusBorder,
   shadow = false,
-  disabled = false
+  disabled = false,
+  setToBottom
 }) => {
-  const containerStyles = [shadow ? styles.containerShadow : styles.container];
+  // const containerStyles = [shadow ? styles.containerShadow : styles.container];
+  const containerStyles = [
+    setToBottom ? styles.containerBottom : styles.container
+  ];
   if (buttonWidth) {
     containerStyles.push({ width: buttonWidth });
   }
@@ -73,7 +77,8 @@ button.propTypes = {
   colorBorderBottom: PropTypes.string,
   radiusBorder: PropTypes.number,
   shadow: PropTypes.bool,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  setToBottom: PropTypes.bool
 };
 
 export default button;
