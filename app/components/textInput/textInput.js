@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { View, TextInput, Animated, Keyboard, Text } from "react-native";
-import TextWarning from "./textWarning";
-import styles from "./styles";
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {View, TextInput, Animated, Keyboard, Text} from 'react-native';
+import TextWarning from './textWarning';
+import styles from './styles';
 
 class textInput extends Component {
   constructor(props) {
@@ -10,23 +10,23 @@ class textInput extends Component {
     this.animatedIsFocused = new Animated.Value(this.props.value ? 1 : 0);
     this.state = {
       isFocused: false,
-      animatedIsFocused: new Animated.Value(this.props.value ? 1 : 0)
+      animatedIsFocused: new Animated.Value(this.props.value ? 1 : 0),
     };
   }
 
   static propTypes = {
-    value: PropTypes.string
+    value: PropTypes.string,
   };
 
   componentDidUpdate() {
     Animated.timing(this.state.animatedIsFocused, {
       toValue: this.state.isFocused || this.props.value ? 1 : 0,
-      duration: 200
+      duration: 200,
     }).start();
   }
 
-  handleFocus = () => this.setState({ isFocused: true });
-  handleBlur = () => this.setState({ isFocused: false });
+  handleFocus = () => this.setState({isFocused: true});
+  handleBlur = () => this.setState({isFocused: false});
 
   render() {
     const {
@@ -48,63 +48,63 @@ class textInput extends Component {
     } = this.props;
     const labelStyle = [
       {
-        position: "absolute",
+        position: 'absolute',
         left: 5,
         top: this.state.animatedIsFocused.interpolate({
           inputRange: [0, 1],
-          outputRange: [30, 12]
+          outputRange: [30, 12],
         }),
         fontSize: this.state.animatedIsFocused.interpolate({
           inputRange: [0, 1],
-          outputRange: [18, 14]
+          outputRange: [18, 14],
         }),
         color: this.state.animatedIsFocused.interpolate({
           inputRange: [0, 1],
-          outputRange: ["white", "white"]
+          outputRange: ['white', 'white'],
         }),
-        marginBottom: 10
-      }
+        marginBottom: 10,
+      },
     ];
     const textStyle = [styles.text];
     const marginStyles = [styles.marginBottomView];
 
     const textInputStyles = [
-      border ? styles.textInputStyle : styles.textInputNoBorder
+      border ? styles.textInputStyle : styles.textInputNoBorder,
     ];
     if (containerWidth) {
-      textInputStyles.push({ width: containerWidth });
+      textInputStyles.push({width: containerWidth});
     }
-    if (disableInput == "disable") {
-      textInputStyles.push({ backgroundColor: "#eee" });
+    if (disableInput == 'disable') {
+      textInputStyles.push({backgroundColor: '#eee'});
     }
     if (containerHeight) {
-      textInputStyles.push({ height: containerHeight });
+      textInputStyles.push({height: containerHeight});
     }
     if (containerPadding) {
-      textInputStyles.push({ paddingTop: containerPadding });
+      textInputStyles.push({paddingTop: containerPadding});
     }
     if (marginBottom) {
-      marginStyles.push({ marginBottom: marginBottom });
+      marginStyles.push({marginBottom: marginBottom});
     }
     if (textColor) {
-      textStyle.push({ color: textColor });
+      textStyle.push({color: textColor});
       textStyle.push({
-        borderBottomColor: "rgba(90, 90, 90, 0.2)"
+        borderBottomColor: 'rgba(90, 90, 90, 0.2)',
       });
       labelStyle.push({
         color: this.animatedIsFocused.interpolate({
           inputRange: [0, 1],
-          outputRange: ["rgba(90, 90, 90, 0.2)", "rgba(90, 90, 90, 0.2)"]
-        })
+          outputRange: ['rgba(90, 90, 90, 0.2)', 'rgba(90, 90, 90, 0.2)'],
+        }),
       });
     }
 
     if (this.state.isFocused) {
-      textStyle.push({ borderBottomColor: "#e6ca6b" });
+      textStyle.push({borderBottomColor: '#e6ca6b'});
     }
 
     return (
-      <View styles={styles.styles}>
+      <View>
         <View style={styles.row100}>
           <View style={styles.width50}>
             <View style={styles.row100}>
@@ -112,7 +112,7 @@ class textInput extends Component {
                 style={[
                   styles.colorBlackLight,
                   styles.textSemiBold,
-                  styles.marginBottom10
+                  styles.marginBottom10,
                 ]}
               >
                 {label}
@@ -122,7 +122,7 @@ class textInput extends Component {
                   style={[
                     styles.textSemiBold,
                     styles.marginBottom10,
-                    styles.colorRed
+                    styles.colorRed,
                   ]}
                 >
                   *
@@ -169,7 +169,7 @@ textInput.propTypes = {
   multiline: PropTypes.bool,
   required: PropTypes.bool,
   border: PropTypes.bool,
-  ColorborderBottom: PropTypes.string
+  ColorborderBottom: PropTypes.string,
 };
 
 export default textInput;

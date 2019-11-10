@@ -1,38 +1,39 @@
-import React, { Component } from "react";
-import FormLogin from "./formLogin";
-import { Alert } from "react-native";
+import React, {Component} from 'react';
+import FormLogin from './formLogin';
+import {Alert} from 'react-native';
+import {KeyboardAvoid} from '../../components/keyboardAvoid';
 class login extends Component {
   constructor(props) {
     super(props);
     this.state = {
       Login: {
-        Username: "",
-        Password: ""
+        Username: '',
+        Password: '',
       },
-      messageAlert: "",
-      isAlert: false
+      messageAlert: '',
+      isAlert: false,
     };
   }
 
   handleValidate = () => {
-    const { Login } = this.state;
+    const {Login} = this.state;
     let isError = false;
-    if (Login.Username === "" && Login.Password === "") {
+    if (Login.Username === '' && Login.Password === '') {
       this.setState({
-        messageAlert: "Username dan Password tidak boleh kosong",
-        isAlert: true
+        messageAlert: 'Username dan Password tidak boleh kosong',
+        isAlert: true,
       });
       isError = true;
-    } else if (Login.Username === "") {
+    } else if (Login.Username === '') {
       this.setState({
-        messageAlert: "Username tidak boleh kosong",
-        isAlert: true
+        messageAlert: 'Username tidak boleh kosong',
+        isAlert: true,
       });
       isError = true;
-    } else if (Login.Password === "") {
+    } else if (Login.Password === '') {
       this.setState({
-        messageAlert: "Password tidak boleh kosong",
-        isAlert: true
+        messageAlert: 'Password tidak boleh kosong',
+        isAlert: true,
       });
       isError = true;
     }
@@ -43,43 +44,47 @@ class login extends Component {
     if (!isError) {
       this.handleAlert();
     } else {
-      this.props.navigation.navigate("App");
+      this.props.navigation.navigate('App');
     }
     // this.props.navigation.navigate("App");
   };
   handleAlert = () => {
-    const { isAlert, messageAlert } = this.state;
+    const {isAlert, messageAlert} = this.state;
     if (isAlert) {
       Alert.alert(
-        "Gagal Masuk",
+        'Gagal Masuk',
         messageAlert,
         [
           {
-            text: "OK"
-          }
+            text: 'OK',
+          },
         ],
-        { cancelable: false }
+        {cancelable: false}
       );
     }
   };
 
   render() {
     return (
-      <FormLogin
-        valueUsername={this.state.Username}
-        valuePass={this.state.Password}
-        onChangeTextPass={text =>
-          this.setState({
-            Login: { ...this.state.Login, Password: text }
-          })
-        }
-        onChangeTextUsername={text =>
-          this.setState({
-            Login: { ...this.state.Login, Username: text }
-          })
-        }
-        onPressSubmit={() => this.handleLogin()}
-      />
+      <KeyboardAvoid>
+        {() => (
+          <FormLogin
+            valueUsername={this.state.Username}
+            valuePass={this.state.Password}
+            onChangeTextPass={text =>
+              this.setState({
+                Login: {...this.state.Login, Password: text},
+              })
+            }
+            onChangeTextUsername={text =>
+              this.setState({
+                Login: {...this.state.Login, Username: text},
+              })
+            }
+            onPressSubmit={() => this.handleLogin()}
+          />
+        )}
+      </KeyboardAvoid>
     );
   }
 }
