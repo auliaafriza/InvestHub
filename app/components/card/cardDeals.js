@@ -1,11 +1,11 @@
-import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
-import styles from "./styles";
-import PropTypes from "prop-types";
-import Card from "./card";
-import Label from "./label";
-import { Button } from "../button";
-import { mainColor, color1, color2, color3, color } from "../../screens/styles";
+import React from 'react';
+import {View, Text, TouchableOpacity} from 'react-native';
+import styles from './styles';
+import PropTypes from 'prop-types';
+import Card from './card';
+import Label from './label';
+import {Button} from '../button';
+import {mainColor, color1, color2, color3, color} from '../../screens/styles';
 
 const cardDeals = ({
   Nama,
@@ -13,16 +13,16 @@ const cardDeals = ({
   onPress,
   label,
   onPressSeeDetail,
-  onPressCancel
+  onPressCancel,
 }) => {
   return (
     <View style={styles.bottomMargin}>
-      <Card widthCard="95%">
+      <Card widthCard="100%">
         <View
           style={[
             styles.row100,
             styles.paddingHorizontal20,
-            styles.paddingBottom10
+            styles.paddingBottom10,
           ]}
         >
           <Label
@@ -41,7 +41,7 @@ const cardDeals = ({
               styles.width100,
               styles.paddingHorizontal20,
               styles.paddingBottom10,
-              styles.paddingTop40
+              styles.paddingTop40,
             ]}
           >
             <Text style={styles.text16}>{Nama}</Text>
@@ -95,7 +95,7 @@ cardDeals.propTypes = {
   onPress: PropTypes.func,
   label: PropTypes.string,
   onPressSeeDetail: PropTypes.func,
-  onPressCancel: PropTypes.func
+  onPressCancel: PropTypes.func,
 };
 
 export default cardDeals;

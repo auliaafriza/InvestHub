@@ -4,12 +4,14 @@ import { createStackNavigator } from "react-navigation-stack";
 import { LoginStack } from "./loginNav";
 import homeNav from "./homeNav";
 import { SignUpStack } from "./signUpNav";
+import { DetailPageStack } from './dealNav'
 
 const Root = createStackNavigator(
   {
     App: homeNav,
     Auth: LoginStack,
-    SignUp: SignUpStack
+    SignUp: SignUpStack,
+    DetailPage: DetailPageStack,
   },
   {
     initialRouteName: "Auth",

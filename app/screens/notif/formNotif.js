@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { View, Text } from "react-native";
-import { styles } from "../styles";
-import PropTypes from "prop-types";
-import moment from "moment";
+import React, {Component} from 'react';
+import {View, Text} from 'react-native';
+import {styles} from '../styles';
+import PropTypes from 'prop-types';
+import moment from 'moment';
 const formNotif = props => {
   return (
     <React.Fragment>
@@ -37,7 +37,7 @@ const formNotif = props => {
             <View key={i}>
               <View style={styles.cardNotif}>
                 <Text style={[styles.text18]}>
-                  {moment(temp.date).format("DD MMM YYYY")}
+                  {moment(temp.date).format('DD MMM YYYY')}
                 </Text>
               </View>
               {temp.item.map(data => (
@@ -46,18 +46,10 @@ const formNotif = props => {
                     {data.Title.length < 50
                       ? data.Title
                       : data.Title.slice(0, 50)}
-                    {data.Title.length < 50 ? data.Title : "..."}
+                    {data.Title.length < 50 ? data.Title : '...'}
                   </Text>
                 </View>
               ))}
-              {/* <View style={styles.textNotif}>
-                <Text style={styles.texttextAlignVertical}>
-                  {temp.Title.length < 44
-                    ? temp.Title
-                    : temp.Title.slice(0, 44)}
-                  {temp.Title.length < 44 ? temp.Title : "..."}
-                </Text>
-              </View> */}
             </View>
           );
         })
@@ -71,7 +63,7 @@ const formNotif = props => {
 };
 
 formNotif.propTypes = {
-  data: PropTypes.array
+  data: PropTypes.array,
 };
 
 {

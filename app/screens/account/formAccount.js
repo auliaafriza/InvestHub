@@ -1,9 +1,39 @@
-import React from "react";
-import { View, Button } from "react-native";
-import { styles, black, color1 } from "../styles";
-import { TextInput } from "../../components/textInput";
+import React from 'react';
+import {View, Button, Picker} from 'react-native';
+import {styles, black, color1} from '../styles';
+import {TextInput, DropDown} from '../../components/textInput';
 // import { Button } from "../../components/button";
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
+
+const pengaruhModal = [
+  {
+    Id: 'rendah',
+    Nama: 'Resiko Rendah',
+  },
+  {
+    Id: 'sedang',
+    Nama: 'Resiko Sedang',
+  },
+  {
+    Id: 'tinggi',
+    Nama: 'Resiko Tinggi',
+  },
+];
+
+const karateristikUsaha = [
+  {
+    Id: 'rumahan',
+    Nama: 'UMKM skala rumahan',
+  },
+  {
+    Id: 'tempatusaha',
+    Nama: 'UMKM skala bertempat usaha',
+  },
+  {
+    Id: 'produksi',
+    Nama: 'UMKM skala produksi',
+  },
+];
 
 const formLogin = ({
   data,
@@ -12,7 +42,7 @@ const formLogin = ({
   onChangeTextEmail,
   onChangeTextPengaruhModal,
   onChangeTextKarateristikUsaha,
-  handleLogout
+  handleLogout,
 }) => {
   return (
     <View style={styles.container}>
@@ -20,8 +50,6 @@ const formLogin = ({
         <TextInput
           label="Nama"
           placeholder="Nama"
-          required={false}
-          //border={false}
           containerWidth="100%"
           containerHeight={45}
           value={data.Name}
@@ -32,8 +60,6 @@ const formLogin = ({
         <TextInput
           label="Email"
           placeholder="Email"
-          required={false}
-          //border={false}
           containerWidth="100%"
           containerHeight={45}
           value={data.Email}
@@ -41,53 +67,20 @@ const formLogin = ({
           ColorborderBottom={black}
           required={true}
         />
-        <TextInput
+        <DropDown
           label="Pengaruh Modal"
-          placeholder="Pengaruh Modal"
-          required={false}
-          //border={false}
-          containerWidth="100%"
-          containerHeight={45}
+          required={true}
+          datadropDown={pengaruhModal}
+          onValueChange={onChangeTextPengaruhModal}
           value={data.PengaruhModal}
-          onChangeText={onChangeTextPengaruhModal}
-          ColorborderBottom={black}
-          required={true}
         />
-        <TextInput
+        <DropDown
           label="Karakteristik Usaha"
-          placeholder="Karakteristik Usaha"
-          required={false}
-          //border={false}
-          containerWidth="100%"
-          containerHeight={45}
-          value={data.KarakteristikUsaha}
-          onChangeText={onChangeTextKarateristikUsaha}
-          ColorborderBottom={black}
           required={true}
+          datadropDown={karateristikUsaha}
+          onValueChange={onChangeTextKarateristikUsaha}
+          value={data.KarakteristikUsaha}
         />
-        <View style={[styles.row100, styles.rowEnd]}>
-          {/* <Button
-            text="Simpan"
-            buttonWidth="20%"
-            buttonHeight={40}
-            bold
-            buttonColor="white"
-            textColor="black"
-            onPress={handleSave}
-            radiusBorder={0}
-          /> */}
-        </View>
-        {/* <Button
-          text="Logout"
-          buttonWidth="20%"
-          buttonHeight={40}
-          bold
-          buttonColor="white"
-          textColor="red"
-          onPress={handleLogout}
-          radiusBorder={0}
-          setToBottom={true}
-        /> */}
         <Button title="Simpan" onPress={handleSave} color={color1} />
       </View>
       <View style={[styles.containerBottom, styles.padding40]}>
@@ -103,7 +96,7 @@ formLogin.propTypes = {
   onChangeTextName: PropTypes.func,
   onChangeTextEmail: PropTypes.func,
   onChangeTextPengaruhModal: PropTypes.func,
-  onChangeTextKarateristikUsaha: PropTypes.func
+  onChangeTextKarateristikUsaha: PropTypes.func,
 };
 
 export default formLogin;

@@ -1,50 +1,61 @@
-import React from "react";
-import { View, Text } from "react-native";
-import { styles } from "../styles";
-import { Button } from "../../components/button";
-import PropTypes from "prop-types";
-import MapView, { Marker } from "react-native-maps";
+import React from 'react';
+import {View, Text} from 'react-native';
+import {styles} from '../styles';
+import {Button} from '../../components/button';
+import PropTypes from 'prop-types';
+import MapView, {Marker} from 'react-native-maps';
+import {widthMap} from '../styles';
 
-const formHome = ({ handleInvest }) => {
+const formHome = ({handleInvest}) => {
   return (
     <View style={styles.container}>
-      <View style={[styles.containerForm, styles.center, styles.padding20]}>
+      <View style={[styles.center, styles.padding20]}>
         <View style={styles.cardUserHome}>
           <View style={styles.row100}>
             <View style={[styles.width50, styles.rowStart]}>
-              <Text style={styles.text18}>Hi, Mr User</Text>
+              <Text style={[styles.text18, {color: 'black'}]}>Hi, Mr User</Text>
             </View>
             <View style={[styles.width50, styles.rowStart]}>
-              <Text style={styles.text18}>Saldo</Text>
-              <Text style={styles.text18}>Rp 200.000.000,-</Text>
+              <Text style={[styles.text18, {color: 'black'}]}>Saldo</Text>
+              <Text style={[styles.text18, {color: 'black'}]}>
+                Rp 200.000.000,-
+              </Text>
             </View>
           </View>
-        </View>
-        <View style={styles.cardMapView}>
-          <MapView
-            style={styles.stylesMap}
-            initialRegion={{
-              latitude: 37.78825,
-              longitude: -122.4324,
-              latitudeDelta: 0.00922,
-              longitudeDelta: 0.00421
-            }}
-          >
-            {/* <Marker
-              coordinate={{
+          <View style={styles.cardMapView}>
+            <MapView
+              style={{
+                width: '100%',
+                height: '100%',
+                borderRadius: 10,
+                borderWidth: 1,
+                borderColor: 'black',
+              }}
+              initialRegion={{
                 latitude: 37.78825,
                 longitude: -122.4324,
-                latitudeDelta: 0.00922,
-                longitudeDelta: 0.00421
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421,
               }}
-              title={"title"}
-              description={"description"}
-            /> */}
-          </MapView>
+            >
+              <Marker
+                coordinate={{
+                  latitude: 37.78825,
+                  longitude: -122.4324,
+                  latitudeDelta: 0.00922,
+                  longitudeDelta: 0.00421,
+                }}
+                title={'title'}
+                description={'description'}
+              />
+            </MapView>
+          </View>
         </View>
+      </View>
+      <View style={[styles.containerBottom, styles.center, {margin: 10}]}>
         <Button
           text="Invest"
-          buttonWidth="90%"
+          buttonWidth={widthMap}
           buttonHeight={40}
           bold
           buttonColor="white"
@@ -57,66 +68,7 @@ const formHome = ({ handleInvest }) => {
 };
 
 formHome.propTypes = {
-  handleInvest: PropTypes.func
+  handleInvest: PropTypes.func,
 };
 
 export default formHome;
-
-// import React from "react";
-// import { View, Text } from "react-native";
-// import { styles } from "../styles";
-// import { Button } from "../../components/button";
-// import PropTypes from "prop-types";
-// import MapView, { Marker } from "react-native-maps";
-
-// const formHome = ({ handleInvest }) => {
-//   return (
-//     <View style={styles.containerWhite}>
-//       <View style={[styles.containerForm, styles.center, styles.padding20]}>
-//         <View style={styles.cardUserHome}>
-//           <View style={[styles.row100, styles.container]}>
-//             <View style={[styles.width50, styles.rowStart]}>
-//               <Text style={styles.text18}>Hi, Mr User</Text>
-//             </View>
-//             <View style={[styles.width50, styles.rowStart]}>
-//               <Text style={styles.text18}>Saldo</Text>
-//               <Text style={styles.text18}>Rp 200.000.000,-</Text>
-//             </View>
-//           </View>
-//         </View>
-//         <View style={styles.cardMapView}>
-//           {/* <MapView
-//             style={styles.stylesMap}
-//             initialRegion={{
-//               latitude: 37.78825,
-//               longitude: -122.4324,
-//               latitudeDelta: 0.00922,
-//               longitudeDelta: 0.00421
-//             }}
-//           >
-//             <Marker
-//               coordinate={{ latitude: 37.78825, longitude: -122.4324 }}
-//               title={"title"}
-//               description={"description"}
-//             />
-//           </MapView> */}
-//         </View>
-//         <Button
-//           text="Invest"
-//           buttonWidth="90%"
-//           buttonHeight={40}
-//           bold
-//           buttonColor="white"
-//           textColor="black"
-//           onPress={handleInvest}
-//         />
-//       </View>
-//     </View>
-//   );
-// };
-
-// formHome.propTypes = {
-//   handleInvest: PropTypes.func
-// };
-
-// export default formHome;

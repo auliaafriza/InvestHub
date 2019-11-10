@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import FormDeals from "./formDeals";
-import PropTypes from "prop-types";
-import { Alert } from "react-native";
+import React, {Component} from 'react';
+import FormDeals from './formDeals';
+import PropTypes from 'prop-types';
+import {Alert} from 'react-native';
 
 class DealPage extends Component {
   constructor(props) {
@@ -11,20 +11,11 @@ class DealPage extends Component {
 
   static propTypes = {};
   handleDetail = () => {
-    Alert.alert("Detail", "Detail UMKM");
-  };
-
-  handleCancel = () => {
-    Alert.alert("Cancel", "Cancel");
+    this.props.navigation.navigate('DetailPage');
   };
 
   render() {
-    return (
-      <FormDeals
-        handleCancel={this.handleCancel}
-        handleDetail={this.handleDetail}
-      />
-    );
+    return <FormDeals handleDetail={this.handleDetail} />;
   }
 }
 

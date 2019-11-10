@@ -1,17 +1,17 @@
-import { StyleSheet } from "react-native";
-import { orange } from "../../screens/styles";
+import {StyleSheet} from 'react-native';
+import {orange} from '../../screens/styles';
 const styles = StyleSheet.create({
   top20: {
-    top: 20
+    top: 20,
   },
   paddingTop40: {
-    paddingTop: 40
+    paddingTop: 40,
   },
   width50: {
-    width: "50%"
+    width: '50%',
   },
   width100: {
-    width: "100%"
+    width: '100%',
   },
   labelcontainer: {
     // backgroundColor: "#e6ca6b",
@@ -20,12 +20,12 @@ const styles = StyleSheet.create({
     height: 20,
     zIndex: 4,
     elevation: 3,
-    position: "absolute",
-    justifyContent: "center",
-    alignItems: "center"
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   labelcontainerParallelogram: {
-    backgroundColor: "transparent",
+    backgroundColor: 'transparent',
     width: 10,
     height: 10,
     //borderStyle: 'solid',
@@ -37,94 +37,94 @@ const styles = StyleSheet.create({
     // borderRightColor: "#b2993d",
     borderTopColor: orange,
     borderRightColor: orange,
-    borderBottomColor: "transparent",
-    borderLeftColor: "transparent",
+    borderBottomColor: 'transparent',
+    borderLeftColor: 'transparent',
     zIndex: 4,
-    position: "absolute"
+    position: 'absolute',
   },
   text: {
     fontSize: 12,
-    color: "black",
-    textAlign: "center",
-    fontWeight: "300",
+    color: 'black',
+    textAlign: 'center',
+    fontWeight: '300',
     zIndex: 0,
-    elevation: 0
+    elevation: 0,
   },
   text16: {
     fontSize: 16,
-    color: "black"
+    color: 'black',
   },
   ribbonAbsolute: {
     padding: 5,
     borderRadius: 15,
-    borderColor: "#fff",
+    borderColor: '#fff',
     borderWidth: 2,
-    position: "absolute",
+    position: 'absolute',
     top: 10,
-    left: 10
+    left: 10,
   },
   containerCardView: {
-    backgroundColor: "#f5f5fd",
+    backgroundColor: '#f5f5fd',
     // backgroundColor: orange,
-    width: "100%",
+    width: '100%',
     marginBottom: 10,
     marginTop: 10,
-    shadowColor: "black",
+    shadowColor: 'black',
     shadowOffset: {
       width: 0,
-      height: 3
+      height: 3,
     },
     elevation: 3,
     zIndex: 0,
     shadowRadius: 5,
     shadowOpacity: 1.0,
-    borderRadius: 10
+    borderRadius: 10,
   },
   hiddenRadius: {
-    overflow: "hidden",
-    borderRadius: 10
+    overflow: 'hidden',
+    borderRadius: 10,
   },
   bottomMargin: {
-    marginBottom: 5
+    marginBottom: 5,
   },
   ribbonPosition: {
-    top: "10%",
-    left: 5
+    top: '10%',
+    left: 5,
   },
   ribbonGoldIOS: {
     zIndex: 10,
-    elevation: 3
+    elevation: 3,
   },
   paddingHorizontal20: {
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
   },
   styleRowButton: {
-    flexDirection: "row",
-    width: "100%",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'space-between',
     paddingBottom: 10,
     paddingLeft: 10,
-    paddingRight: 10
+    paddingRight: 10,
   },
   row100: {
-    flexDirection: "row",
-    width: "100%"
+    flexDirection: 'row',
+    width: '100%',
   },
   positionCard: {
-    position: "absolute",
+    position: 'absolute',
     top: 80,
     left: 0,
-    right: 0
+    right: 0,
   },
   paddingBottom10: {
-    paddingBottom: 10
+    paddingBottom: 10,
   },
   paddingRight5: {
-    paddingRight: 5
+    paddingRight: 5,
   },
   paddingLeft5: {
-    paddingLeft: 5
-  }
+    paddingLeft: 5,
+  },
 });
 
 export default styles;

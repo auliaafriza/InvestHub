@@ -1,26 +1,27 @@
-import React from "react";
-import { View, Image, Button } from "react-native";
-import { styles, color1 } from "../styles";
-import { TextInput } from "../../components/textInput";
+import React from 'react';
+import {View, Image, Button} from 'react-native';
+import {styles, color1} from '../styles';
+import {TextInput} from '../../components/textInput';
 // import { Button } from "../../components/button";
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 const formLogin = ({
   valueUsername,
   valuePass,
   onChangeTextPass,
   onChangeTextUsername,
-  onPressSubmit
+  onPressSubmit,
 }) => {
   return (
-    <View style={styles.container}>
-      <Image
-        style={{ width: 360, height: 400 }}
-        // style={{ alignContent: "center" }}
-        source={require("../../../assets/images/Login.jpg")}
-        // width={1}
-      />
-      <View style={[styles.center, styles.paddingLogin]}>
+    <View style={[styles.container, styles.center]}>
+      <View style={styles.paddingLogin}>
+        <View style={styles.center}>
+          <Image
+            style={{width: 160, height: 160}}
+            source={require('../../../assets/images/Ivesthub.png')}
+            resizeMode="contain"
+          />
+        </View>
         <TextInput
           label="Username"
           placeholder="username"
@@ -43,15 +44,6 @@ const formLogin = ({
           onChangeText={onChangeTextPass}
           secureTextEntry={true}
         />
-        {/* <Button
-          text="Submit"
-          buttonWidth="20%"
-          buttonHeight={40}
-          bold
-          buttonColor="white"
-          textColor="black"
-          onPress={onPressSubmit}
-        /> */}
         <Button title="Sign In" onPress={onPressSubmit} color={color1} />
       </View>
     </View>
@@ -63,7 +55,7 @@ formLogin.propTypes = {
   valuePass: PropTypes.string,
   onChangeTextPass: PropTypes.func,
   onChangeTextUsername: PropTypes.func,
-  onPressSubmit: PropTypes.func
+  onPressSubmit: PropTypes.func,
 };
 
 export default formLogin;
