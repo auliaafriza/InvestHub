@@ -22,7 +22,12 @@
     },
     "android": {
       "package": "investHub.com",
-      "versionCode": 10000
+      "versionCode": 10000,
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyBbc1Z03u14MO5i_EAyJbezzVpptCdsE9c"
+        }
+      }
     }
   }
 }

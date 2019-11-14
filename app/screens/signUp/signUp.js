@@ -1,24 +1,24 @@
-import React, { Component } from "react";
-import FormSignUp from "./formSignUp";
+import React, {Component} from 'react';
+import FormSignUp from './formSignUp';
 
 class singUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
       SignUp: {
-        NamaUsaha: "",
-        Alamat: "",
-        JenisUsaha: "",
-        NPWP: "",
-        SIUP: "",
-        Email: "",
-        PhoneNumber: ""
-      }
+        NamaUsaha: '',
+        Alamat: '',
+        JenisUsaha: '',
+        NPWP: '',
+        SIUP: '',
+        Email: '',
+        PhoneNumber: '',
+      },
     };
   }
 
   handleSignUp = () => {
-    this.props.navigation.navigate("Auth");
+    this.props.navigation.navigate('Auth');
   };
 
   render() {
@@ -33,37 +33,37 @@ class singUp extends Component {
         valuePhoneNumber={this.state.SignUp.PhoneNumber}
         onChangeTextNamaUsaha={text =>
           this.setState({
-            SignUp: { ...this.state.SignUp, NamaUsaha: text }
+            SignUp: {...this.state.SignUp, NamaUsaha: text},
           })
         }
         onChangeTextAlamat={text =>
           this.setState({
-            SignUp: { ...this.state.SignUp, Alamat: text }
+            SignUp: {...this.state.SignUp, Alamat: text},
           })
         }
         onChangeTextJenisUsaha={text =>
           this.setState({
-            SignUp: { ...this.state.SignUp, JenisUsaha: text }
+            SignUp: {...this.state.SignUp, JenisUsaha: text},
           })
         }
         onChangeTextNPWP={text =>
           this.setState({
-            SignUp: { ...this.state.SignUp, NPWP: text }
+            SignUp: {...this.state.SignUp, NPWP: text},
           })
         }
         onChangeTextSIUP={text =>
           this.setState({
-            SignUp: { ...this.state.SignUp, SIUP: text }
+            SignUp: {...this.state.SignUp, SIUP: text},
           })
         }
         onChangeTextEmail={text =>
           this.setState({
-            SignUp: { ...this.state.SignUp, Email: text }
+            SignUp: {...this.state.SignUp, Email: text},
           })
         }
         onChangeTextPhoneNumber={text =>
           this.setState({
-            SignUp: { ...this.state.SignUp, PhoneNumber: text }
+            SignUp: {...this.state.SignUp, PhoneNumber: text},
           })
         }
         onPressSubmit={() => this.handleSignUp()}

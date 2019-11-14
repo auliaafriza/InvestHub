@@ -44,7 +44,9 @@ class login extends Component {
     if (!isError) {
       this.handleAlert();
     } else {
-      this.props.navigation.navigate('App');
+      this.state.Login.Username != ''
+        ? this.props.navigation.navigate('App')
+        : this.props.navigation.navigate('AdminHome');
     }
     // this.props.navigation.navigate("App");
   };

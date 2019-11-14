@@ -19,6 +19,15 @@ export const widthMap = Dimensions.get('window').width * 0.79;
 // color="#b2993d"
 
 export const styles = StyleSheet.create({
+  text16: {
+    fontSize: 16,
+  },
+  text14: {
+    fontSize: 14,
+  },
+  text12: {
+    fontSize: 12,
+  },
   container: {
     flex: 1,
     backgroundColor: mainColor,
@@ -29,6 +38,9 @@ export const styles = StyleSheet.create({
   },
   marginBottom10: {
     marginBottom: 10,
+  },
+  marginTop20: {
+    marginTop: 20,
   },
   searchBarList: {
     backgroundColor: 'white',
@@ -76,10 +88,6 @@ export const styles = StyleSheet.create({
     shadowOpacity: 2.0,
   },
   stylesMap: {
-    // borderRadius: 8,
-    // height: '100%',
-    // flex: 1,
-    // shadowOffset: {width: 16.4, height: 1.6},
     position: 'absolute',
     top: 0,
     bottom: 0,
@@ -98,11 +106,39 @@ export const styles = StyleSheet.create({
   width50: {
     width: '50%',
   },
+  paddingLeft5: {
+    paddingLeft: 5,
+  },
   width60: {
     width: '60%',
   },
+  textBold: {
+    fontWeight: '300',
+  },
   width40: {
     width: '40%',
+  },
+  rightCenter: {
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+  },
+  greyColor: {
+    color: '#777777',
+  },
+  redColor: {
+    color: 'red',
+  },
+  blueColor: {
+    color: '#6b82e6',
+  },
+  marginBottom5: {
+    marginBottom: 5,
+  },
+  width100: {
+    width: '100%',
+  },
+  marginBottom20: {
+    marginBottom: 20,
   },
   rowEnd: {
     justifyContent: 'flex-end',
@@ -127,8 +163,6 @@ export const styles = StyleSheet.create({
   cardNotif: {
     width: '100%',
     height: 50,
-    // borderColor: "#252525",
-    // borderWidth: 1,
     marginBottom: 30,
     padding: 10,
     backgroundColor: color1,
@@ -138,7 +172,6 @@ export const styles = StyleSheet.create({
     width: '100%',
     borderBottomColor: '#252525',
     borderBottomWidth: 1,
-    // marginBottom: 10,
     padding: 10,
   },
   texttextAlignVertical: {
@@ -159,30 +192,12 @@ export const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 10,
     top: -40,
-    // shadowColor: yellow,
-    // shadowOffset: {
-    //   width: 0,
-    //   height: 5
-    // },
-    // elevation: 3,
     zIndex: 0,
-    // shadowRadius: 10,
-    // shadowOpacity: 2.0,
     backgroundColor: yellow,
   },
   containerBottom: {
-    // backgroundColor: "transparent",
-    // height: 20,
-    // borderRadius: 100,
-    // alignItems: "center",
-    // justifyContent: "center",
-    // alignContent: "center",
-    // borderColor: "red",
-    // borderWidth: 3,
     position: 'absolute',
     bottom: 0,
     width: '100%',
-    // height: "100%"
-    // color: "red"
   },
 });
