@@ -10,6 +10,12 @@ const styles = StyleSheet.create({
   width50: {
     width: '50%',
   },
+  width40: {
+    width: '40%',
+  },
+  width60: {
+    width: '60%',
+  },
   width100: {
     width: '100%',
   },
@@ -54,6 +60,52 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: 'black',
   },
+  text22: {
+    fontSize: 22,
+  },
+  rowEnd: {
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+  },
+  alignItemsEnd: {alignItems: 'flex-end'},
+  textStyle: {
+    fontSize: 14,
+    color: '#777777',
+    marginBottom: 5,
+  },
+  textAktif: {
+    color: '#6b82e6',
+    fontSize: 22,
+  },
+  textInAktif: {
+    color: 'red',
+    fontSize: 22,
+  },
+
+  text14: {
+    fontSize: 14,
+  },
+  paddingLeft5: {paddingLeft: 5},
+  text12: {
+    fontSize: 12,
+  },
+  textBold: {
+    fontWeight: '300',
+  },
+  greyColor: {
+    color: '#777777',
+  },
+  marginBottom5: {marginBottom: 5},
+  rightCenter: {
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+  },
+  marginBottom10: {
+    marginBottom: 10,
+  },
+  marginTop20: {
+    marginTop: 20,
+  },
   ribbonAbsolute: {
     padding: 5,
     borderRadius: 15,
@@ -63,6 +115,7 @@ const styles = StyleSheet.create({
     top: 10,
     left: 10,
   },
+  padding20: {padding: 20},
   containerCardView: {
     backgroundColor: '#f5f5fd',
     // backgroundColor: orange,

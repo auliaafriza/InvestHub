@@ -11,7 +11,7 @@ class DealPage extends Component {
 
   static propTypes = {};
   handleDetail = () => {
-    this.props.navigation.navigate('DetailPage');
+    this.props.navigation.navigate('UMKMPage');
   };
 
   render() {

@@ -1,10 +1,11 @@
-import { createAppContainer } from "react-navigation";
-import { createStackNavigator } from "react-navigation-stack";
+import {createAppContainer} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 
-import { LoginStack } from "./loginNav";
-import homeNav from "./homeNav";
-import { SignUpStack } from "./signUpNav";
-import { DetailPageStack } from './dealNav'
+import {LoginStack} from './loginNav';
+import homeNav from './homeNav';
+import {SignUpStack} from './signUpNav';
+import {DetailPageStack} from './dealNav';
+import adminHomeNav from './adminHomeNav';
 
 const Root = createStackNavigator(
   {
@@ -12,13 +13,14 @@ const Root = createStackNavigator(
     Auth: LoginStack,
     SignUp: SignUpStack,
     DetailPage: DetailPageStack,
+    AdminHome: adminHomeNav,
   },
   {
-    initialRouteName: "Auth",
-    headerMode: "none",
+    initialRouteName: 'Auth',
+    headerMode: 'none',
     navigationOptions: {
-      header: null
-    }
+      header: null,
+    },
   }
 );
 
