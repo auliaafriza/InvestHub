@@ -66,6 +66,10 @@ class login extends Component {
     }
   };
 
+  handleSignUp = () => {
+    this.props.navigation.navigate('SignUp');
+  };
+
   render() {
     return (
       <KeyboardAvoid>
@@ -84,6 +88,7 @@ class login extends Component {
               })
             }
             onPressSubmit={() => this.handleLogin()}
+            onPressSignUp={() => this.handleSignUp()}
           />
         )}
       </KeyboardAvoid>

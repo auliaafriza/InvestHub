@@ -1,9 +1,10 @@
 import React from 'react';
-import {View, Image, Button} from 'react-native';
+import {View, Image, Button, Text} from 'react-native';
 import {styles, color1} from '../styles';
 import {TextInput} from '../../components/textInput';
 // import { Button } from "../../components/button";
 import PropTypes from 'prop-types';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const formLogin = ({
   valueUsername,
@@ -11,6 +12,7 @@ const formLogin = ({
   onChangeTextPass,
   onChangeTextUsername,
   onPressSubmit,
+  onPressSignUp,
 }) => {
   return (
     <View style={[styles.container, styles.center]}>
@@ -45,6 +47,14 @@ const formLogin = ({
           secureTextEntry={true}
         />
         <Button title="Sign In" onPress={onPressSubmit} color={color1} />
+        <TouchableOpacity onPress={onPressSignUp}>
+          <Text
+            type="bold"
+            style={{color: 'white', textAlign: 'center', paddingTop: 50}}
+          >
+            Already have account ? Sign Up
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

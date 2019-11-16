@@ -22,7 +22,7 @@ const topNav = createMaterialTopTabNavigator(
     Pengguna: {
       screen: pengguna,
       navigationOptions: {
-        title: 'Pengguna',
+        title: 'User',
         header: null,
       },
     },
@@ -47,7 +47,7 @@ const topNav = createMaterialTopTabNavigator(
         const {routeName} = navigation.state;
         if (routeName === 'Home') {
           return <Ionicons name="md-home" size={18} color={tintColor} />;
-        } else if (routeName === 'Deal') {
+        } else if (routeName === 'Deal' || routeName === 'UMKM') {
           return <FontAwesome name="suitcase" size={18} color={tintColor} />;
         } else if (routeName === 'Notif') {
           return (
@@ -55,6 +55,8 @@ const topNav = createMaterialTopTabNavigator(
           );
         } else if (routeName === 'Setting') {
           return <Ionicons name="md-settings" size={18} color={tintColor} />;
+        } else if (routeName === 'User') {
+          return <Ionicons name="md-people" size={18} color={tintColor} />;
         }
       },
     }),

@@ -1,10 +1,19 @@
-import React from "react";
-import { View } from "react-native";
-import { styles } from "../styles";
-import { TextInput } from "../../components/textInput";
-import { Button } from "../../components/button";
-import PropTypes from "prop-types";
-
+import React from 'react';
+import {View} from 'react-native';
+import {styles} from '../styles';
+import {TextInput, DropDown} from '../../components/textInput';
+import {Button} from '../../components/button';
+import PropTypes from 'prop-types';
+const jenisIdentitas = [
+  {
+    Id: 'KTP',
+    Nama: 'Kartu Tanda Penduduk',
+  },
+  {
+    Id: 'SIM',
+    Nama: 'Surat Izin Mengemudi',
+  },
+];
 const formSignUp = ({
   valueNamaUsaha,
   valueAlamat,
@@ -20,78 +29,95 @@ const formSignUp = ({
   onChangeTextSIUP,
   onChangeTextEmail,
   onChangeTextPhoneNumber,
-  onPressSubmit
+  onPressSubmit,
 }) => {
   return (
     <View style={styles.container}>
       <View style={[styles.containerForm, styles.center, styles.padding40]}>
         <TextInput
-          label="Nama Usaha"
-          placeholder="Nama Usaha"
-          required={false}
+          label="Nama"
+          placeholder="Nama Usaha/Pengguna"
+          required={true}
           border={true}
           containerWidth="100%"
-          containerHeight={45}
+          containerHeight={30}
           value={valueNamaUsaha}
           onChangeText={onChangeTextNamaUsaha}
         />
         <TextInput
           label="Alamat"
           placeholder="Alamat"
-          required={false}
+          required={true}
           border={true}
           containerWidth="100%"
-          containerHeight={45}
+          containerHeight={30}
           value={valueAlamat}
           onChangeText={onChangeTextAlamat}
         />
-        <TextInput
+        {/* <TextInput
           label="Jenis Usaha"
           placeholder="Jenis Usaha"
-          required={false}
+          required={true}
           border={true}
           containerWidth="100%"
-          containerHeight={45}
+          containerHeight={30}
           value={valueJenisUsaha}
           onChangeText={onChangeTextJenisUsaha}
         />
         <TextInput
           label="NPWP"
           placeholder="NPWP"
-          required={false}
+          required={true}
           border={true}
           containerWidth="100%"
-          containerHeight={45}
+          containerHeight={30}
           value={valueNPWP}
           onChangeText={onChangeTextNPWP}
         />
         <TextInput
           label="SIUP"
           placeholder="SIUP"
-          required={false}
+          required={true}
           border={true}
           containerWidth="100%"
-          containerHeight={45}
+          containerHeight={30}
           value={valueSIUP}
           onChangeText={onChangeTextSIUP}
+        /> */}
+        <DropDown
+          label="Jenis Identitas"
+          required={true}
+          datadropDown={jenisIdentitas}
+          onValueChange={onChangeTextJenisUsaha}
+          value={valueJenisUsaha}
+        />
+        <TextInput
+          label="NIK"
+          placeholder="NIK"
+          required={true}
+          border={true}
+          containerWidth="100%"
+          containerHeight={30}
+          value={valueNPWP}
+          onChangeText={onChangeTextNPWP}
         />
         <TextInput
           label="Email"
           placeholder="Email"
-          required={false}
+          required={true}
           border={true}
           containerWidth="100%"
-          containerHeight={45}
+          containerHeight={30}
           value={valueEmail}
           onChangeText={onChangeTextEmail}
         />
         <TextInput
           label="Phone Number"
           placeholder="Phone Number"
-          required={false}
+          required={true}
           border={true}
           containerWidth="100%"
-          containerHeight={45}
+          containerHeight={30}
           value={valuePhoneNumber}
           onChangeText={onChangeTextPhoneNumber}
         />
@@ -124,7 +150,7 @@ formSignUp.propTypes = {
   onChangeTextSIUP: PropTypes.func,
   onChangeTextEmail: PropTypes.func,
   onChangeTextPhoneNumber: PropTypes.func,
-  onPressSubmit: PropTypes.func
+  onPressSubmit: PropTypes.func,
 };
 
 export default formSignUp;

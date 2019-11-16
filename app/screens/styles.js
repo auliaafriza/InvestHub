@@ -200,4 +200,16 @@ export const styles = StyleSheet.create({
     bottom: 0,
     width: '100%',
   },
+  modal: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: mainColor,
+    height: 200,
+    width: '80%',
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#fff',
+    marginTop: 80,
+    marginLeft: 40,
+  },
 });
