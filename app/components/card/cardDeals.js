@@ -72,7 +72,7 @@ const cardDeals = ({
                 onPress={onPressCancel}
               />  */}
               <Button
-                text="See Detail"
+                text="Detail"
                 buttonWidth="90%"
                 buttonHeight={40}
                 bold

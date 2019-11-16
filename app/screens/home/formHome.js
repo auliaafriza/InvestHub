@@ -1,25 +1,36 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import {styles} from '../styles';
+import {styles, mainColor} from '../styles';
 import {Button} from '../../components/button';
 import PropTypes from 'prop-types';
 import MapView, {Marker} from 'react-native-maps';
 import {widthMap} from '../styles';
 
-const formHome = ({handleInvest}) => {
+const formHome = props => {
+  const {onPress, handleInvest} = props;
   return (
     <View style={styles.container}>
       <View style={[styles.center, styles.padding20]}>
         <View style={styles.cardUserHome}>
           <View style={styles.row100}>
             <View style={[styles.width50, styles.rowStart]}>
-              <Text style={[styles.text18, {color: 'black'}]}>Hi, Mr User</Text>
-            </View>
-            <View style={[styles.width50, styles.rowStart]}>
-              <Text style={[styles.text18, {color: 'black'}]}>Saldo</Text>
+              <Text style={[styles.text18, {color: 'black'}]}>Balance</Text>
               <Text style={[styles.text18, {color: 'black'}]}>
                 Rp 200.000.000,-
               </Text>
+            </View>
+            <View style={[styles.width50, styles.rowStart]}>
+              <View style={{marginLeft: 70}}>
+                <Button
+                  text="Top Up"
+                  buttonWidth={70}
+                  buttonHeight={40}
+                  bold
+                  buttonColor={mainColor}
+                  textColor="white"
+                  onPress={onPress}
+                />
+              </View>
             </View>
           </View>
           <View style={styles.cardMapView}>

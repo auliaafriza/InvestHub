@@ -21,7 +21,7 @@ const formDeals = ({data, handleCancel, handleDetail}) => {
       />
       <View style={[styles.containerForm, styles.padding20]}>
         <Text style={{fontWeight: 'bold', fontSize: 18, color: 'white'}}>
-          List Of Investasi
+          Daftar Investasi
         </Text>
         <CardDeals
           Nama="Sejahtera Bersama Dia dan keluarga kita cemara"
