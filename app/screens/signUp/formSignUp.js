@@ -33,103 +33,31 @@ const formSignUp = ({
 }) => {
   return (
     <View style={styles.container}>
-      <View style={[styles.containerForm, styles.center, styles.padding40]}>
-        <TextInput
-          label="Nama"
-          placeholder="Nama Usaha/Pengguna"
-          required={true}
-          border={true}
-          containerWidth="100%"
-          containerHeight={30}
-          value={valueNamaUsaha}
-          onChangeText={onChangeTextNamaUsaha}
-        />
-        <TextInput
-          label="Alamat"
-          placeholder="Alamat"
-          required={true}
-          border={true}
-          containerWidth="100%"
-          containerHeight={30}
-          value={valueAlamat}
-          onChangeText={onChangeTextAlamat}
-        />
-        {/* <TextInput
-          label="Jenis Usaha"
-          placeholder="Jenis Usaha"
-          required={true}
-          border={true}
-          containerWidth="100%"
-          containerHeight={30}
-          value={valueJenisUsaha}
-          onChangeText={onChangeTextJenisUsaha}
-        />
-        <TextInput
-          label="NPWP"
-          placeholder="NPWP"
-          required={true}
-          border={true}
-          containerWidth="100%"
-          containerHeight={30}
-          value={valueNPWP}
-          onChangeText={onChangeTextNPWP}
-        />
-        <TextInput
-          label="SIUP"
-          placeholder="SIUP"
-          required={true}
-          border={true}
-          containerWidth="100%"
-          containerHeight={30}
-          value={valueSIUP}
-          onChangeText={onChangeTextSIUP}
-        /> */}
-        <DropDown
-          label="Jenis Identitas"
-          required={true}
-          datadropDown={jenisIdentitas}
-          onValueChange={onChangeTextJenisUsaha}
-          value={valueJenisUsaha}
-        />
-        <TextInput
-          label="NIK"
-          placeholder="NIK"
-          required={true}
-          border={true}
-          containerWidth="100%"
-          containerHeight={30}
-          value={valueNPWP}
-          onChangeText={onChangeTextNPWP}
-        />
-        <TextInput
-          label="Email"
-          placeholder="Email"
-          required={true}
-          border={true}
-          containerWidth="100%"
-          containerHeight={30}
-          value={valueEmail}
-          onChangeText={onChangeTextEmail}
-        />
-        <TextInput
-          label="Phone Number"
-          placeholder="Phone Number"
-          required={true}
-          border={true}
-          containerWidth="100%"
-          containerHeight={30}
-          value={valuePhoneNumber}
-          onChangeText={onChangeTextPhoneNumber}
-        />
-        <Button
-          text="Submit"
-          buttonWidth="70%"
-          buttonHeight={40}
-          bold
-          buttonColor="white"
-          textColor="black"
-          onPress={onPressSubmit}
-        />
+      <View style={styles.styleRowButton}>
+        <View style={styles.paddingRight5}>
+          <TextInput
+            label="Nominal"
+            placeholder="Nominal"
+            required={true}
+            border={true}
+            containerWidth="50%"
+            containerHeight={35}
+            //   value={valuePass}
+            //   onChangeText={onChangeTextPass}
+          />
+        </View>
+        <View style={styles.paddingLeft5}>
+          <TextInput
+            label="Nominal"
+            placeholder="Nominal"
+            required={true}
+            border={true}
+            containerWidth="50%"
+            containerHeight={35}
+            //   value={valuePass}
+            //   onChangeText={onChangeTextPass}
+          />
+        </View>
       </View>
     </View>
   );
@@ -154,3 +82,104 @@ formSignUp.propTypes = {
 };
 
 export default formSignUp;
+
+{
+  /* <View style={[styles.containerForm, styles.center, styles.padding40]}>
+<TextInput
+  label="Nama"
+  placeholder="Nama Usaha/Pengguna"
+  required={true}
+  border={true}
+  containerWidth="100%"
+  containerHeight={30}
+  value={valueNamaUsaha}
+  onChangeText={onChangeTextNamaUsaha}
+/>
+<TextInput
+  label="Alamat"
+  placeholder="Alamat"
+  required={true}
+  border={true}
+  containerWidth="100%"
+  containerHeight={30}
+  value={valueAlamat}
+  onChangeText={onChangeTextAlamat}
+/>
+{/* <TextInput
+  label="Jenis Usaha"
+  placeholder="Jenis Usaha"
+  required={true}
+  border={true}
+  containerWidth="100%"
+  containerHeight={30}
+  value={valueJenisUsaha}
+  onChangeText={onChangeTextJenisUsaha}
+/>
+<TextInput
+  label="NPWP"
+  placeholder="NPWP"
+  required={true}
+  border={true}
+  containerWidth="100%"
+  containerHeight={30}
+  value={valueNPWP}
+  onChangeText={onChangeTextNPWP}
+/>
+<TextInput
+  label="SIUP"
+  placeholder="SIUP"
+  required={true}
+  border={true}
+  containerWidth="100%"
+  containerHeight={30}
+  value={valueSIUP}
+  onChangeText={onChangeTextSIUP}
+/> 
+<DropDown
+  label="Jenis Identitas"
+  required={true}
+  datadropDown={jenisIdentitas}
+  onValueChange={onChangeTextJenisUsaha}
+  value={valueJenisUsaha}
+/>
+<TextInput
+  label="NIK"
+  placeholder="NIK"
+  required={true}
+  border={true}
+  containerWidth="100%"
+  containerHeight={30}
+  value={valueNPWP}
+  onChangeText={onChangeTextNPWP}
+/>
+<TextInput
+  label="Email"
+  placeholder="Email"
+  required={true}
+  border={true}
+  containerWidth="100%"
+  containerHeight={30}
+  value={valueEmail}
+  onChangeText={onChangeTextEmail}
+/>
+<TextInput
+  label="Phone Number"
+  placeholder="Phone Number"
+  required={true}
+  border={true}
+  containerWidth="100%"
+  containerHeight={30}
+  value={valuePhoneNumber}
+  onChangeText={onChangeTextPhoneNumber}
+/>
+<Button
+  text="Submit"
+  buttonWidth="70%"
+  buttonHeight={40}
+  bold
+  buttonColor="white"
+  textColor="black"
+  onPress={onPressSubmit}
+/>
+</View> */
+}

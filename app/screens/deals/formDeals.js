@@ -1,10 +1,17 @@
 import React from 'react';
 import {View, Text, StatusBar} from 'react-native';
 import {styles} from '../styles';
-import {CardDeals} from '../../components/card';
 import PropTypes from 'prop-types';
 import {SearchBar} from 'react-native-elements';
+import {Card, CardList, CardDeals} from '../../components/card';
+import {ScrollView} from 'react-native-gesture-handler';
 
+const x = {
+  Nama: 'UMKM',
+  Pengguna: 'Resiko Kecil',
+  umkm: 'Mikro',
+  Amount: 'Rp 100.000.000,-',
+};
 const formDeals = ({data, handleCancel, handleDetail}) => {
   return (
     <View style={styles.container}>
@@ -23,7 +30,7 @@ const formDeals = ({data, handleCancel, handleDetail}) => {
         <Text style={{fontWeight: 'bold', fontSize: 18, color: 'white'}}>
           Daftar Investasi
         </Text>
-        <CardDeals
+        {/* <CardDeals
           Nama="Sejahtera Bersama Dia dan keluarga kita cemara"
           Alamat="Malabar"
           label="Tanah"
@@ -36,7 +43,51 @@ const formDeals = ({data, handleCancel, handleDetail}) => {
           label="Kayu"
           onPressCancel={handleCancel}
           onPressSeeDetail={handleDetail}
-        />
+        /> */}
+        <ScrollView>
+          <Card>
+            <CardList
+              Nama={x.Nama}
+              // onPress={onPress}
+              Pengguna={x.pengguna}
+              type="investasi"
+              Amount={x.Amount}
+              umkm={x.umkm}
+            />
+            <CardList
+              Nama={x.Nama}
+              // onPress={onPress}
+              Pengguna={x.pengguna}
+              type="investasi"
+              Amount={x.Amount}
+              umkm={x.umkm}
+            />
+            <CardList
+              Nama={x.Nama}
+              // onPress={onPress}
+              Pengguna={x.pengguna}
+              type="investasi"
+              Amount={x.Amount}
+              umkm={x.umkm}
+            />
+            <CardList
+              Nama={x.Nama}
+              // onPress={onPress}
+              Pengguna={x.pengguna}
+              type="investasi"
+              Amount={x.Amount}
+              umkm={x.umkm}
+            />
+            <CardList
+              Nama={x.Nama}
+              // onPress={onPress}
+              Pengguna={x.pengguna}
+              type="investasi"
+              Amount={x.Amount}
+              umkm={x.umkm}
+            />
+          </Card>
+        </ScrollView>
       </View>
     </View>
   );

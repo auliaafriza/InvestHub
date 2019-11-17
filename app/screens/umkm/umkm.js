@@ -10,10 +10,24 @@ class umkm extends Component {
       Skala: 'Mikro',
       alamat: 'Jalan Malabar nomor 24 Bogor Tengah, Jawa Barat',
       status: 'active',
+      data: [],
     };
   }
 
+  componentDidMount() {
+    fetch('http://investhub.neotenstudio.com:80/InvestHubAPI/API/GetUmkmList/')
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState({
+          loading: false,
+          data: responseJson.data,
+        });
+      })
+      .catch(error => console.log(error)); //to catch the errors if any
+  }
+
   render() {
+    const {data} = this.state;
     return (
       <FormUMKM
         Nama={this.state.Nama}
@@ -22,6 +36,7 @@ class umkm extends Component {
         Skala={this.state.Skala}
         alamat={this.state.alamat}
         status={this.state.status}
+        dataList={data}
       />
     );
   }

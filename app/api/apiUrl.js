@@ -1,4 +1,3 @@
-const GET_USER_ALL = 'TEST';
-const GET_USER_BY_ID = 'TEST';
+const GET_USER_ALL = 'GetUserList/';
 
-export {GET_USER_ALL, GET_USER_BY_ID};
+export {GET_USER_ALL};
