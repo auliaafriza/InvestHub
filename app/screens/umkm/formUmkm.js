@@ -5,7 +5,15 @@ import {Card, CardList} from '../../components/card';
 import PropTypes from 'prop-types';
 import {ScrollView} from 'react-native-gesture-handler';
 
-const formUmkm = ({Nama, onPress, PengaruhModal, Skala, alamat, status}) => {
+const formUmkm = ({
+  Nama,
+  onPress,
+  PengaruhModal,
+  Skala,
+  alamat,
+  status,
+  dataList,
+}) => {
   return (
     <View style={styles.container}>
       <View style={[styles.containerForm, styles.padding20]}>
@@ -21,7 +29,18 @@ const formUmkm = ({Nama, onPress, PengaruhModal, Skala, alamat, status}) => {
         </Text>
         <ScrollView>
           <Card>
-            <CardList
+            {dataList.map(obj => (
+              <CardList
+                Nama={obj.nama}
+                onPress={onPress}
+                // PengaruhModal={PengaruhModal}
+                // Skala={Skala}
+                alamat={obj.address}
+                status={obj.active === '1' ? 'Active' : 'Deactive'}
+                type="umkm"
+              />
+            ))}
+            {/* <CardList
               Nama={Nama}
               onPress={onPress}
               PengaruhModal={PengaruhModal}
@@ -65,7 +84,7 @@ const formUmkm = ({Nama, onPress, PengaruhModal, Skala, alamat, status}) => {
               alamat={alamat}
               status={status}
               type="umkm"
-            />
+            /> */}
           </Card>
         </ScrollView>
       </View>

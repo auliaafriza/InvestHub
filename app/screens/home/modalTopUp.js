@@ -15,12 +15,12 @@ export default class App extends Component {
           animationType={'fade'}
           transparent={true}
           visible={modalVisible}
-          onRequestClose={() => {
-            console.log('Modal has been closed.');
-          }}
+          onRequestClose={onPress}
         >
           <View style={styles.modal}>
-            <View style={styles.center}>
+            <View
+              style={[styles.containerForm, styles.center, styles.paddingLogin]}
+            >
               <TextInput
                 label="Nominal"
                 placeholder="Nominal"
@@ -30,14 +30,16 @@ export default class App extends Component {
                 containerHeight={35}
                 //   value={valuePass}
                 //   onChangeText={onChangeTextPass}
-                //   secureTextEntry={true}
               />
-              <Button title="Top up" color="red" />
+              <View style={styles.styleRowButton}>
+                <View style={styles.paddingRight5}>
+                  <Button title="Close" onPress={onPress} color="red" />
+                </View>
+                <View style={styles.paddingLeft5}>
+                  <Button title="Top up" />
+                </View>
+              </View>
             </View>
-
-            <Button title="Click To Close Modal" onPress={onPress} />
-            {/* <Text style={styles.text}>Modal is open!</Text>
-             */}
           </View>
         </Modal>
       </View>

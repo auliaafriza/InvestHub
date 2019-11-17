@@ -208,8 +208,19 @@ export const styles = StyleSheet.create({
     width: '80%',
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: '#fff',
+    borderColor: 'white',
     marginTop: 80,
     marginLeft: 40,
+  },
+  styleRowButton: {
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'space-between',
+    paddingBottom: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+  paddingRight5: {
+    paddingRight: 5,
   },
 });

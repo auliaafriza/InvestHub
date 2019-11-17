@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import {styles} from '../styles';
+import {styles, mainColor} from '../styles';
 import {Card, CardList} from '../../components/card';
 import PropTypes from 'prop-types';
 import {ScrollView} from 'react-native-gesture-handler';
@@ -13,6 +13,7 @@ const formPengguna = ({
   alamat,
   status,
   Balance,
+  dataList,
 }) => {
   return (
     <View style={styles.container}>
@@ -29,7 +30,19 @@ const formPengguna = ({
         </Text>
         <ScrollView>
           <Card>
-            <CardList
+            {dataList.map(obj => (
+              <CardList
+                Nama={obj.name}
+                onPress={onPress}
+                PengaruhModal={obj.capitalInfluenceName}
+                Skala={obj.bussinessScaleName}
+                alamat={obj.address}
+                // status="active"
+                Balance="0"
+                type="pengguna"
+              />
+            ))}
+            {/* <CardList
               Nama={Nama}
               onPress={onPress}
               PengaruhModal={PengaruhModal}
@@ -37,6 +50,26 @@ const formPengguna = ({
               alamat={alamat}
               status={status}
               Balance={Balance}
+              type="pengguna"
+            /> */}
+            {/* <CardList
+              Nama={Nama}
+              onPress={onPress}
+              PengaruhModal={PengaruhModal}
+              Skala={Skala}
+              alamat={alamat}
+              status={status}
+              Balance={Balance}
+              type="pengguna"
+            />
+            <CardList
+              Nama={Nama}
+              onPress={onPress}
+              PengaruhModal={PengaruhModal}
+              Skala={Skala}
+              alamat={alamat}
+              Balance={Balance}
+              status={status}
               type="pengguna"
             />
             <CardList
@@ -55,30 +88,10 @@ const formPengguna = ({
               PengaruhModal={PengaruhModal}
               Skala={Skala}
               alamat={alamat}
-              Balance={Balance}
-              status={status}
-              type="pengguna"
-            />
-            <CardList
-              Nama={Nama}
-              onPress={onPress}
-              PengaruhModal={PengaruhModal}
-              Skala={Skala}
-              alamat={alamat}
               status={status}
               Balance={Balance}
               type="pengguna"
-            />
-            <CardList
-              Nama={Nama}
-              onPress={onPress}
-              PengaruhModal={PengaruhModal}
-              Skala={Skala}
-              alamat={alamat}
-              status={status}
-              Balance={Balance}
-              type="pengguna"
-            />
+            /> */}
           </Card>
         </ScrollView>
       </View>

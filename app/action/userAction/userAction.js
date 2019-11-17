@@ -1,11 +1,11 @@
 import {GET_USER_ALL, RESET_USER} from '../actionTypes';
-import {getCountriesApi} from '../../../api/countriesApi';
+import {getUserAll} from '../../api/userApi/userApi';
 
 const getUserAllAction = () => {
   return dispatch => {
     return dispatch({
       type: GET_USER_ALL,
-      payload: getCountriesApi(),
+      payload: getUserAll(),
     });
   };
 };
@@ -18,4 +18,4 @@ const resetUserAction = () => {
   };
 };
 
-export {getCountries, resetStatusGetCountries};
+export {getUserAllAction, resetUserAction};
