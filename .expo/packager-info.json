@@ -1,9 +1,9 @@
 {
-  "expoServerNgrokUrl": "https://59-k6s.auliaafriza.investhub.exp.direct",
-  "packagerNgrokUrl": "https://packager.59-k6s.auliaafriza.investhub.exp.direct",
-  "ngrokPid": 14844,
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 8108
+  "packagerPid": 16732,
+  "expoServerNgrokUrl": "https://59-k6s.auliaafriza.investhub.exp.direct",
+  "packagerNgrokUrl": "https://packager.59-k6s.auliaafriza.investhub.exp.direct",
+  "ngrokPid": 11428
 }

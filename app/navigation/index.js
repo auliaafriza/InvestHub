@@ -6,6 +6,7 @@ import homeNav from './homeNav';
 import {SignUpStack} from './signUpNav';
 import {DetailPageStack} from './dealNav';
 import adminHomeNav from './adminHomeNav';
+import geoLocation from '../screens/home/geoLocation';
 
 const Root = createStackNavigator(
   {
@@ -14,6 +15,7 @@ const Root = createStackNavigator(
     SignUp: SignUpStack,
     DetailPage: DetailPageStack,
     AdminHome: adminHomeNav,
+    geoLocation: geoLocation,
   },
   {
     initialRouteName: 'Auth',
