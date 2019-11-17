@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import FormPengguna from './formPengguna';
 import {getUserAllAction} from '../../action/userAction/userAction';
-// import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 class pengguna extends Component {
   constructor(props) {
     super(props);
@@ -16,47 +17,34 @@ class pengguna extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   this.props
-  //     .getUserAllAction()
-  //     .then(res => this.setState({data: res.value.data}));
-  // }
+  static propTypes = {
+    dispatch: PropTypes.func,
+    userAll: PropTypes.array,
+  };
+
   componentDidMount() {
-    fetch('http://investhub.neotenstudio.com:80/InvestHubAPI/API/GetUserList/')
-      .then(response => response.json())
-      .then(responseJson => {
-        this.setState({
-          loading: false,
-          data: responseJson.data,
-        });
-      })
-      .catch(error => console.log(error)); //to catch the errors if any
+    this.props.dispatch(getUserAllAction());
   }
+  // componentDidMount() {
+  //   fetch('http://investhub.neotenstudio.com:80/InvestHubAPI/API/GetUserList/')
+  //     .then(response => response.json())
+  //     .then(responseJson => {
+  //       this.setState({
+  //         loading: false,
+  //         data: responseJson.data,
+  //       });
+  //     })
+  //     .catch(error => console.log(error)); //to catch the errors if any
+  // }
 
   render() {
     const {data} = this.state;
-    return (
-      <FormPengguna
-        // Nama={this.state.Nama}
-        // // onPress={onPress}
-        // PengaruhModal={this.state.PengaruhModal}
-        // Skala={this.state.Skala}
-        // alamat={this.state.alamat}
-        // status={this.state.status}
-        // Balance={this.state.Balance}
-        dataList={data}
-      />
-    );
+    return <FormPengguna dataList={data} />;
   }
 }
 
-export default pengguna;
-// function mapStateToProps(state) {
-//   return {};
-// }
-// export default connect(
-//   mapStateToProps,
-//   {
-//     getUserAllAction,
-//   }
-// )(pengguna);
+const mapStateToProps = state => ({
+  userAll: state.userReducer.userAll,
+});
+
+export default connect(mapStateToProps)(pengguna);
