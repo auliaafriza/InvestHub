@@ -4,7 +4,8 @@ import {createStackNavigator} from 'react-navigation-stack';
 import {LoginStack} from './loginNav';
 import homeNav from './homeNav';
 import {SignUpStack} from './signUpNav';
-import {DetailPageStack} from './dealNav';
+import {DetailPageStack, DetailUmkmStack} from './dealNav';
+import {DetailPenggunaPageStack} from './userNav';
 import adminHomeNav from './adminHomeNav';
 import geoLocation from '../screens/home/geoLocation';
 
@@ -14,8 +15,10 @@ const Root = createStackNavigator(
     Auth: LoginStack,
     SignUp: SignUpStack,
     DetailPage: DetailPageStack,
+    DetailUmkmPage: DetailUmkmStack,
     AdminHome: adminHomeNav,
     geoLocation: geoLocation,
+    DetailPengguna: DetailPenggunaPageStack,
   },
   {
     initialRouteName: 'Auth',

@@ -1,127 +1,128 @@
 import * as types from '../action/actionTypes';
 
 const initialState = {
-  userAll: [],
-  userById: [],
-  userAllStatus: null,
-  userByIdStatus: null,
-  postUserStatus: null,
+  umkmAll: [],
+  umkmAllStatus: null,
+  umkmById: [],
+  umkmByIdStatus: null,
   loading: false,
-  putUser: {},
-  putUserStatus: null,
-  deleteUser: {},
-  deleteUserStatus: null,
-  postUser: {},
-  postUserStatus: null,
+  putUmkm: {},
+  putUmkmStatus: null,
+  deleteUmkm: {},
+  deleteUmkmStatus: null,
+  postUmkm: {},
+  postUmkmStatus: null,
   errors: {},
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     //---------------------------------
-    // GET_USER_ALL
+    // GET_UMKM_ALL
     //---------------------------------
-    case types.GET_USER_ALL:
+    case types.GET_UMKM_ALL:
       return {...state};
-    case types.GET_USER_ALL_PENDING:
+    case types.GET_UMKM_ALL_PENDING:
       return {...state, loading: true};
-    case types.GET_USER_ALL_FULFILLED:
+    case types.GET_UMKM_ALL_FULFILLED:
       return {
         ...state,
-        userAll: action.payload.data,
+        umkmAll: action.payload.data,
         loading: false,
-        userAllStatus: true,
+        umkmAllStatus: true,
       };
-    case types.GET_USER_ALL_REJECTED:
+    case types.GET_UMKM_ALL_REJECTED:
       return {
         ...state,
         errors: action.payload.response.data,
         loading: false,
-        userAllStatus: false,
+        umkmAllStatus: false,
       };
 
-    case types.GET_USER_BY_ID:
+    case types.GET_UMKM_BY_ID:
       return {...state};
-    case types.GET_USER_BY_ID_PENDING:
+    case types.GET_UMKM_BY_ID_PENDING:
       return {...state, loading: true};
-    case types.GET_USER_BY_ID_FULFILLED:
+    case types.GET_UMKM_BY_ID_FULFILLED:
       return {
         ...state,
-        userById: action.payload.data,
+        umkmById: action.payload.data,
         loading: false,
-        userByIdStatus: true,
+        umkmByIdStatus: true,
       };
-    case types.GET_USER_BY_ID_REJECTED:
+    case types.GET_UMKM_BY_ID_REJECTED:
       return {
         ...state,
         errors: action.payload.response.data,
         loading: false,
-        userByIdStatus: false,
+        umkmByIdStatus: false,
       };
 
-    case types.POST_USER:
+    case types.POST_UMKM:
       return {...state};
-    case types.POST_USER_PENDING:
+    case types.POST_UMKM_PENDING:
       return {...state, loading: true};
-    case types.POST_USER_FULFILLED:
+    case types.POST_UMKM_FULFILLED:
       return {
         ...state,
-
         loading: false,
-        postUserStatus: true,
+        postUmkm: action.payload.data,
+        postUmkmStatus: true,
       };
-    case types.POST_USER_REJECTED:
+    case types.POST_UMKM_REJECTED:
       return {
         ...state,
         errors: action.payload.response.data,
         loading: false,
-        postUserStatus: false,
+        postUmkmStatus: false,
       };
 
-    case types.PUT_USER:
+    case types.PUT_UMKM:
       return {...state};
-    case types.PUT_USER_PENDING:
+    case types.PUT_UMKM_PENDING:
       return {...state, loading: true};
-    case types.PUT_USER_FULFILLED:
+    case types.PUT_UMKM_FULFILLED:
       return {
         ...state,
         loading: false,
-        putUser: action.payload.data,
-        putUserStatus: true,
+        putUmkm: action.payload.data,
+        putUmkmStatus: true,
       };
-    case types.PUT_USER_REJECTED:
+    case types.PUT_UMKM_REJECTED:
       return {
         ...state,
         errors: action.payload.response.data,
         loading: false,
-        putUserStatus: false,
+        putUmkmStatus: false,
       };
 
-    case types.DELETE_USER:
+    case types.DELETE_UMKM:
       return {...state};
-    case types.DELETE_USER_PENDING:
+    case types.DELETE_UMKM_PENDING:
       return {...state, loading: true};
-    case types.DELETE_USER_FULFILLED:
+    case types.DELETE_UMKM_FULFILLED:
       return {
         ...state,
         loading: false,
-        deleteUser: action.payload.data,
-        deleteUserStatus: true,
+        deleteUmkm: action.payload.data,
+        deleteUmkmStatus: true,
       };
-    case types.DELETE_USER_REJECTED:
+    case types.DELETE_UMKM_REJECTED:
       return {
         ...state,
         errors: action.payload.response.data,
         loading: false,
-        deleteUserStatus: false,
+        deleteUmkmStatus: false,
       };
-    case types.RESET_USER:
+
+    case types.RESET_UMKM:
       return {
         ...state,
-        userAllStatus: null,
-        userByIdStatus: null,
-        postUserStatus: null,
-        putUserStatus: null,
+        umkmAllStatus: null,
+        postUmkmStatus: null,
+        umkmByIdStatus: null,
+        putUmkmStatus: null,
+        deleteUmkmStatus: null,
       };
     default:
       return state;
