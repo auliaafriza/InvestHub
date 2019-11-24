@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import FormHome from './formHome';
 // import NavigationIcon from "../navigationIcon/Navigation";
-import {View, Button} from 'react-native';
+import {View, Button, Text, FlatList} from 'react-native';
 import ModalExample from './modalTopUp';
 import {styles} from '../styles';
 import GeofenceTask, {getEventHistory, clearEventHistory} from './geoFenceTask';
@@ -49,9 +49,9 @@ class home extends Component {
             })
           }
         />
-        <Text>{`Event History length ${eventHistory.length}`}</Text>
+        <Text>{`Event History length ${this.state.eventHistory.length}`}</Text>
         <FlatList
-          data={eventHistory}
+          data={this.state.eventHistory}
           renderItem={({item}) => (
             <Text>{`${item.key} | ${
               item.value.eventType === 1 ? 'ENTER' : 'EXIT'

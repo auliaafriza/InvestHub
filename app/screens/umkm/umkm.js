@@ -1,6 +1,16 @@
 import React, {Component} from 'react';
-import FormUMKM from './formUmkm';
-
+// import FormUMKM from './formUmkm';
+import {connect} from 'react-redux';
+import {
+  getUmkmAllAction,
+  resetUmkmAction,
+} from '../../action/umkmAction/umkmAction';
+import PropTypes from 'prop-types';
+import {Card, CardList} from '../../components/card';
+import {ScrollView} from 'react-native-gesture-handler';
+import Loading from '../../components/loading/loading';
+import {View, Button, Text} from 'react-native';
+import {styles} from '../styles';
 class umkm extends Component {
   constructor(props) {
     super(props);
@@ -11,35 +21,85 @@ class umkm extends Component {
       alamat: 'Jalan Malabar nomor 24 Bogor Tengah, Jawa Barat',
       status: 'active',
       data: [],
+      dataObj: {
+        nama: '',
+        alamat: '',
+        long: '',
+        lat: '',
+        active: 1,
+      },
     };
   }
-
+  static propTypes = {
+    dispatch: PropTypes.func,
+    // userAll: PropTypes.array,
+  };
   componentDidMount() {
-    fetch('http://investhub.neotenstudio.com:80/InvestHubAPI/API/GetUmkmList/')
-      .then(response => response.json())
-      .then(responseJson => {
-        this.setState({
-          loading: false,
-          data: responseJson.data,
-        });
-      })
-      .catch(error => console.log(error)); //to catch the errors if any
+    this.props.dispatch(getUmkmAllAction());
   }
+
+  componentDidUpdate() {
+    if (this.props.umkmAllStatus) {
+      this.setState({data: this.props.umkmAll.data});
+      this.props.dispatch(resetUmkmAction());
+    }
+  }
+  handleDetail = data => {
+    this.props.navigation.navigate('DetailUmkmPage', {
+      data: data,
+    });
+  };
+
+  handleAddUmkm = () => {
+    const {dataObj} = this.state;
+    this.props.navigation.navigate('DetailUmkmPage', {
+      data: dataObj,
+    });
+  };
 
   render() {
     const {data} = this.state;
     return (
-      <FormUMKM
-        Nama={this.state.Nama}
-        // onPress={onPress}
-        PengaruhModal={this.state.PengaruhModal}
-        Skala={this.state.Skala}
-        alamat={this.state.alamat}
-        status={this.state.status}
-        dataList={data}
-      />
+      <View style={styles.container}>
+        <Loading />
+        <View style={[styles.containerForm, styles.padding20]}>
+          <Text
+            style={{
+              fontSize: 22,
+              color: 'white',
+              marginBottom: 10,
+              marginTop: 10,
+            }}
+          >
+            Daftar UMKM
+          </Text>
+          <Button title="Tambah Umkm" onPress={this.handleAddUmkm} />
+          <ScrollView>
+            <Card>
+              {data.map((obj, i) => (
+                <CardList
+                  Nama={obj.nama}
+                  onPress={() => this.handleDetail(obj)}
+                  // PengaruhModal={PengaruhModal}
+                  // Skala={Skala}
+                  alamat={obj.address}
+                  status={obj.active === '1' ? 'active' : 'deactive'}
+                  type="umkm"
+                  key={i}
+                />
+              ))}
+            </Card>
+          </ScrollView>
+        </View>
+      </View>
     );
   }
 }
 
-export default umkm;
+const mapStateToProps = state => ({
+  umkmAll: state.umkmReducer.umkmAll,
+  umkmAllStatus: state.umkmReducer.umkmAllStatus,
+  loading: state.umkmReducer.loading,
+});
+
+export default connect(mapStateToProps)(umkm);
