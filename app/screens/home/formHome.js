@@ -3,11 +3,12 @@ import {View, Text} from 'react-native';
 import {styles, mainColor} from '../styles';
 import {Button} from '../../components/button';
 import PropTypes from 'prop-types';
-import MapView, {Marker} from 'react-native-maps';
+import MapView, {Marker, Circle} from 'react-native-maps';
 import {widthMap} from '../styles';
 
 const formHome = props => {
-  const {onPress, handleInvest} = props;
+  const {onPress, handleInvest, longtitude, latitude} = props;
+  console.log('masuk pak eko', longtitude, latitude);
   return (
     <View style={styles.container}>
       <View style={[styles.center, styles.padding20]}>
@@ -34,32 +35,49 @@ const formHome = props => {
             </View>
           </View>
           <View style={styles.cardMapView}>
-            <MapView
-              style={{
-                width: '100%',
-                height: '100%',
-                borderRadius: 10,
-                borderWidth: 1,
-                borderColor: 'black',
-              }}
-              initialRegion={{
-                latitude: 37.78825,
-                longitude: -122.4324,
-                latitudeDelta: 0.0922,
-                longitudeDelta: 0.0421,
-              }}
-            >
-              <Marker
-                coordinate={{
-                  latitude: 37.78825,
-                  longitude: -122.4324,
-                  latitudeDelta: 0.00922,
-                  longitudeDelta: 0.00421,
+            {latitude !== 0 && longtitude !== 0 && (
+              <MapView
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  borderRadius: 10,
+                  borderWidth: 1,
+                  borderColor: 'black',
                 }}
-                title={'title'}
-                description={'description'}
-              />
-            </MapView>
+                initialRegion={{
+                  latitude: latitude,
+                  longitude: longtitude,
+                  // latitude: -6.5825833,
+                  // longitude: 106.8181493,
+                  latitudeDelta: 1,
+                  longitudeDelta: 1,
+                }}
+                initialCamera={{
+                  center: {
+                    latitude: latitude,
+                    longitude: longtitude,
+                  },
+                  pitch: 45,
+                  heading: 90,
+                  altitude: 1000,
+                  zoom: 15,
+                }}
+              >
+                <Marker
+                  coordinate={{
+                    // latitude: -6.5825833,
+                    // longitude: 106.8181493,
+                    latitude: latitude,
+                    longitude: longtitude,
+                    latitudeDelta: 1,
+                    longitudeDelta: 1,
+                  }}
+                  title={'title'}
+                  description={'description'}
+                />
+                {/* <Circle radius={500} /> */}
+              </MapView>
+            )}
           </View>
         </View>
       </View>

@@ -4,7 +4,6 @@ import * as TaskManager from 'expo-task-manager';
 import {AsyncStorage} from 'react-native';
 
 const TASK_NAME = 'GEOFENCE_TEST_TASK';
-
 TaskManager.defineTask(TASK_NAME, ({data: {eventType, region}, error}) => {
   if (error) {
     console.log(error);
@@ -47,15 +46,36 @@ const clearEventHistory = async () => {
 };
 
 const buildRegions = () => {
+  // navigator.geolocation.getCurrentPosition(
+  //   //Will give you the current location
+  //   position => {
+  //     // let currentLongitude = position.coords.longitude;
+  //     // let currentLatitude = position.coords.latitude;
+  //     return [
+  //       {
+  //         identifier: 'north_pole',
+  //         latitude: position.coords.latitude,
+  //         longitude: position.coords.longitude,
+  //         radius: 500,
+  //         notifyOnEnter: true,
+  //         notifyOnExit: true,
+  //       },
+  //     ];
+  //   },
+  //   error => alert(error.message),
+  //   {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+  // );
+
   return [
     {
       identifier: 'north_pole',
-      latitude: 90,
-      longitude: 0,
-      radius: 100,
+      latitude: currentLatitude,
+      longitude: currentLongitude,
+      radius: 500,
       notifyOnEnter: true,
       notifyOnExit: true,
     },
+    ,
     {
       identifier: 'market_st',
       latitude: 37.78270986195718,

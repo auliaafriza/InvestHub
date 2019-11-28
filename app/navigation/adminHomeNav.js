@@ -7,7 +7,7 @@ import umkm from '../screens/umkm/umkm';
 import settingNav from '../screens/account/account';
 import pengguna from '../screens/pengguna/pengguna';
 import investasi from '../screens/investasi/investasi';
-import {Ionicons, FontAwesome} from '@expo/vector-icons';
+import {Ionicons, FontAwesome, MaterialIcons} from '@expo/vector-icons';
 import {mainColor, white, color1} from '../screens/styles';
 
 const topNav = createMaterialTopTabNavigator(
@@ -45,18 +45,16 @@ const topNav = createMaterialTopTabNavigator(
     defaultNavigationOptions: ({navigation}) => ({
       tabBarIcon: ({focused, tintColor}) => {
         const {routeName} = navigation.state;
-        if (routeName === 'Home') {
-          return <Ionicons name="md-home" size={18} color={tintColor} />;
-        } else if (routeName === 'Deal' || routeName === 'UMKM') {
+        if (routeName === 'UMKM') {
           return <FontAwesome name="suitcase" size={18} color={tintColor} />;
-        } else if (routeName === 'Notif') {
+        } else if (routeName === 'Pengguna') {
+          return <FontAwesome name="users" size={18} color={tintColor} />;
+        } else if (routeName === 'Investasi') {
           return (
-            <Ionicons name="md-notifications" size={18} color={tintColor} />
+            <MaterialIcons name="attach-money" size={22} color={tintColor} />
           );
         } else if (routeName === 'Setting') {
           return <Ionicons name="md-settings" size={18} color={tintColor} />;
-        } else if (routeName === 'User') {
-          return <Ionicons name="md-people" size={18} color={tintColor} />;
         }
       },
     }),
