@@ -38,6 +38,7 @@ const topNav = createMaterialTopTabNavigator(
       navigationOptions: {
         title: 'Setting',
         header: null,
+        role: 'UMKM',
       },
     },
   },

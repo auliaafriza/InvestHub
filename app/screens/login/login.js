@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import FormLogin from './formLogin';
 import {Alert} from 'react-native';
 import {KeyboardAvoid} from '../../components/keyboardAvoid';
+import {AsyncStorage} from 'react-native';
 class login extends Component {
   constructor(props) {
     super(props);
@@ -44,9 +45,12 @@ class login extends Component {
     if (!isError) {
       this.handleAlert();
     } else {
-      this.state.Login.Username != ''
+      this.state.Login.Username != 'User001'
+        ? this.props.navigation.navigate('AdminHome')
+        : this.state.Login.Username != 'Admin001'
         ? this.props.navigation.navigate('App')
-        : this.props.navigation.navigate('AdminHome');
+        : null;
+      AsyncStorage.setItem('Role', this.state.Login.Username);
     }
     // this.props.navigation.navigate("App");
   };

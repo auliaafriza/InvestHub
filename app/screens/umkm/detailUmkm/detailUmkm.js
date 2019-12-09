@@ -71,11 +71,12 @@ class detailUmkm extends Component {
   }
   handleSave = () => {
     const {contentButton} = this.state;
-    if (contentButton === 'Edit') {
-      this.setState({contentButton: 'Save'});
-    } else {
-      this.handleSaveUmkm();
-    }
+    // if (contentButton === 'Edit') {
+    //   this.setState({contentButton: 'Save'});
+    // } else {
+    //   this.handleSaveUmkm();
+    // }
+    this.handleSaveUmkm();
   };
 
   handleDelete = () => {
@@ -178,13 +179,21 @@ class detailUmkm extends Component {
                 // onValueChange={onChangeTextKarateristikUsaha}
                 value={data.KarakteristikUsaha}
               />
-              <Button
-                title={contentButton}
-                onPress={this.handleSave}
-                color={color1}
-              />
+              {data.status === 'UMKM' ? (
+                <Button
+                  title={'Simpan'}
+                  onPress={this.handleSave}
+                  color={color1}
+                />
+              ) : (
+                <Button
+                  title={'Invest'}
+                  // onPress={this.handleSave}
+                  color={color1}
+                />
+              )}
             </View>
-            {data.Id && (
+            {data.Id && data.status === 'UMKM' && (
               <View style={[styles.containerBottom, styles.padding40]}>
                 <Button
                   title="Delete UMKM"
