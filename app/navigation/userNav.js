@@ -9,7 +9,7 @@ export const DetailPenggunaPageStack = createStackNavigator(
     DetailPengguna: {
       screen: DetailPengguna,
       navigationOptions: {
-        headerTitle: 'Detail Deal',
+        headerTitle: 'Detail Pengguna',
       },
     },
   },

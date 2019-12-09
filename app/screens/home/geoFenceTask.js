@@ -46,45 +46,23 @@ const clearEventHistory = async () => {
 };
 
 const buildRegions = () => {
-  // navigator.geolocation.getCurrentPosition(
-  //   //Will give you the current location
-  //   position => {
-  //     // let currentLongitude = position.coords.longitude;
-  //     // let currentLatitude = position.coords.latitude;
-  //     return [
-  //       {
-  //         identifier: 'north_pole',
-  //         latitude: position.coords.latitude,
-  //         longitude: position.coords.longitude,
-  //         radius: 500,
-  //         notifyOnEnter: true,
-  //         notifyOnExit: true,
-  //       },
-  //     ];
-  //   },
-  //   error => alert(error.message),
-  //   {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-  // );
-
-  return [
-    {
-      identifier: 'north_pole',
-      latitude: currentLatitude,
-      longitude: currentLongitude,
-      radius: 500,
-      notifyOnEnter: true,
-      notifyOnExit: true,
+  navigator.geolocation.getCurrentPosition(
+    //Will give you the current location
+    position => {
+      return [
+        {
+          identifier: 'north_pole',
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          radius: 500,
+          notifyOnEnter: true,
+          notifyOnExit: true,
+        },
+      ];
     },
-    ,
-    {
-      identifier: 'market_st',
-      latitude: 37.78270986195718,
-      longitude: -122.40972697734833,
-      radius: 500,
-      notifyOnEnter: true,
-      notifyOnExit: true,
-    },
-  ];
+    error => alert(error.message),
+    {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+  );
 };
 
 const geoFenceTask = {
@@ -111,3 +89,23 @@ const geoFenceTask = {
 
 export default geoFenceTask;
 export {getEventHistory, clearEventHistory};
+
+// return [
+//   {
+//     identifier: 'north_pole',
+//     latitude: currentLatitude,
+//     longitude: currentLongitude,
+//     radius: 500,
+//     notifyOnEnter: true,
+//     notifyOnExit: true,
+//   },
+//   ,
+//   {
+//     identifier: 'market_st',
+//     latitude: 37.78270986195718,
+//     longitude: -122.40972697734833,
+//     radius: 500,
+//     notifyOnEnter: true,
+//     notifyOnExit: true,
+//   },
+// ];

@@ -13,6 +13,7 @@ import {connect} from 'react-redux';
 import {View, Button, Alert} from 'react-native';
 import {styles, black, color1} from '../../styles';
 import {TextInput, DropDown} from '../../../components/textInput';
+import {ScrollView} from 'react-native-gesture-handler';
 
 class detailpengguna extends Component {
   constructor(props) {
@@ -88,11 +89,12 @@ class detailpengguna extends Component {
   }
   handleSave = () => {
     const {contentButton} = this.state;
-    if (contentButton === 'Edit') {
-      this.setState({contentButton: 'Save'});
-    } else {
-      this.handleSaveUser();
-    }
+    // if (contentButton === 'Edit') {
+    //   this.setState({contentButton: 'Save'});
+    // } else {
+    //   this.handleSaveUser();
+    // }
+    this.handleSaveUser();
   };
 
   handleDelete = () => {
@@ -160,124 +162,126 @@ class detailpengguna extends Component {
     return (
       <KeyboardAvoid>
         {() => (
-          <View style={styles.container}>
-            <View style={[styles.containerForm, styles.padding40]}>
-              <TextInput
-                label="Nama"
-                placeholder="Nama"
-                containerWidth="100%"
-                containerHeight={45}
-                value={data.nama}
-                onChangeText={text =>
-                  this.setState({
-                    data: {...data, nama: text},
-                  })
-                }
-                ColorborderBottom={black}
-                required={true}
-              />
-              <TextInput
-                label="Email"
-                placeholder="Email"
-                containerWidth="100%"
-                containerHeight={45}
-                value={data.email}
-                onChangeText={text =>
-                  this.setState({
-                    data: {...data, email: text},
-                  })
-                }
-                ColorborderBottom={black}
-                required={true}
-              />
-              <TextInput
-                label="Alamat"
-                placeholder="Alamat"
-                containerWidth="100%"
-                containerHeight={45}
-                value={data.address}
-                onChangeText={text =>
-                  this.setState({
-                    data: {...data, address: text},
-                  })
-                }
-                ColorborderBottom={black}
-                required={true}
-              />
-              <DropDown
-                label="Jenis Kelamin"
-                required={true}
-                datadropDown={gender}
-                onValueChange={text =>
-                  this.setState({
-                    data: {...data, gender: text},
-                  })
-                }
-                value={data.gender}
-              />
-              <DropDown
-                label="Jenis Kartu"
-                required={true}
-                datadropDown={jenisKartu}
-                onValueChange={text =>
-                  this.setState({
-                    data: {...data, cardTypeId: text},
-                  })
-                }
-                value={data.cardTypeId}
-              />
-              <TextInput
-                label="Nomor Kartu"
-                placeholder="Nomor Kartu"
-                containerWidth="100%"
-                containerHeight={45}
-                value={data.cardNumber}
-                onChangeText={text =>
-                  this.setState({
-                    data: {...data, cardNumber: text},
-                  })
-                }
-                ColorborderBottom={black}
-                required={true}
-              />
-              <DropDown
-                label="Pengaruh Modal"
-                required={true}
-                datadropDown={pengaruhModal}
-                onValueChange={text =>
-                  this.setState({
-                    data: {...data, capitalInfluenceId: text},
-                  })
-                }
-                value={data.capitalInfluenceId}
-              />
-              <DropDown
-                label="Skala Usaha"
-                required={true}
-                datadropDown={skalaUsaha}
-                onValueChange={text =>
-                  this.setState({
-                    data: {...data, businessScaleId: text},
-                  })
-                }
-                value={data.businessScaleId}
-              />
-              <Button
-                title={contentButton}
-                onPress={this.handleSave}
-                color={color1}
-              />
-            </View>
-            {data.Id && (
-              <View style={[styles.containerBottom, styles.padding40]}>
+          <ScrollView>
+            <View style={styles.container}>
+              <View style={[styles.containerForm, styles.padding40]}>
+                <TextInput
+                  label="Nama"
+                  placeholder="Nama"
+                  containerWidth="100%"
+                  containerHeight={45}
+                  value={data.nama}
+                  onChangeText={text =>
+                    this.setState({
+                      data: {...data, nama: text},
+                    })
+                  }
+                  ColorborderBottom={black}
+                  required={true}
+                />
+                <TextInput
+                  label="Email"
+                  placeholder="Email"
+                  containerWidth="100%"
+                  containerHeight={45}
+                  value={data.email}
+                  onChangeText={text =>
+                    this.setState({
+                      data: {...data, email: text},
+                    })
+                  }
+                  ColorborderBottom={black}
+                  required={true}
+                />
+                <TextInput
+                  label="Alamat"
+                  placeholder="Alamat"
+                  containerWidth="100%"
+                  containerHeight={45}
+                  value={data.address}
+                  onChangeText={text =>
+                    this.setState({
+                      data: {...data, address: text},
+                    })
+                  }
+                  ColorborderBottom={black}
+                  required={true}
+                />
+                <DropDown
+                  label="Jenis Kelamin"
+                  required={true}
+                  datadropDown={gender}
+                  onValueChange={text =>
+                    this.setState({
+                      data: {...data, gender: text},
+                    })
+                  }
+                  value={data.gender}
+                />
+                <DropDown
+                  label="Jenis Kartu"
+                  required={true}
+                  datadropDown={jenisKartu}
+                  onValueChange={text =>
+                    this.setState({
+                      data: {...data, cardTypeId: text},
+                    })
+                  }
+                  value={data.cardTypeId}
+                />
+                <TextInput
+                  label="Nomor Kartu"
+                  placeholder="Nomor Kartu"
+                  containerWidth="100%"
+                  containerHeight={45}
+                  value={data.cardNumber}
+                  onChangeText={text =>
+                    this.setState({
+                      data: {...data, cardNumber: text},
+                    })
+                  }
+                  ColorborderBottom={black}
+                  required={true}
+                />
+                <DropDown
+                  label="Pengaruh Modal"
+                  required={true}
+                  datadropDown={pengaruhModal}
+                  onValueChange={text =>
+                    this.setState({
+                      data: {...data, capitalInfluenceId: text},
+                    })
+                  }
+                  value={data.capitalInfluenceId}
+                />
+                <DropDown
+                  label="Skala Usaha"
+                  required={true}
+                  datadropDown={skalaUsaha}
+                  onValueChange={text =>
+                    this.setState({
+                      data: {...data, businessScaleId: text},
+                    })
+                  }
+                  value={data.businessScaleId}
+                />
                 <Button
-                  title="Delete Pengguna"
-                  onPress={this.handleDelete}
-                  color="#fb3838"
+                  title={'Simpan'}
+                  onPress={this.handleSave}
+                  color={color1}
                 />
               </View>
-            )}
-          </View>
+              {data.Id && (
+                <View style={[styles.containerBottom, styles.padding40]}>
+                  <Button
+                    title="Delete Pengguna"
+                    onPress={this.handleDelete}
+                    color="#fb3838"
+                  />
+                </View>
+              )}
+            </View>
+          </ScrollView>
         )}
       </KeyboardAvoid>
     );

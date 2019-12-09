@@ -27,6 +27,7 @@ class umkm extends Component {
         long: '',
         lat: '',
         active: 1,
+        status: 'UMKM',
       },
     };
   }
@@ -45,6 +46,7 @@ class umkm extends Component {
     }
   }
   handleDetail = data => {
+    data.status = 'UMKM';
     this.props.navigation.navigate('DetailUmkmPage', {
       data: data,
     });

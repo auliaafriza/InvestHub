@@ -10,6 +10,7 @@ import {connect} from 'react-redux';
 import {View, Button, Picker, Alert} from 'react-native';
 import {styles, black, color1} from '../styles';
 import {TextInput, DropDown} from '../../components/textInput';
+import {AsyncStorage} from 'react-native';
 class account extends Component {
   constructor(props) {
     super(props);
@@ -43,6 +44,7 @@ class account extends Component {
           Nama: 'Resiko Tinggi',
         },
       ],
+      routeName: '',
     };
   }
 
@@ -53,10 +55,13 @@ class account extends Component {
 
   componentDidMount() {
     this.props.dispatch(getUserByIdAction(3));
+    AsyncStorage.getItem('Role', (err, result) => {
+      this.setState({routeName: result});
+    });
   }
   componentDidUpdate() {
     if (this.props.userByIdStatus) {
-      this.setState({data: this.props.userById.data[0]});
+      this.setState({data: {...this.props.userById.data[0]}});
       this.props.dispatch(resetUserAction());
     }
     if (this.props.putUserStatus) {
@@ -130,7 +135,7 @@ class account extends Component {
   };
 
   render() {
-    const {data, pengaruhModal, skalaUsaha} = this.state;
+    const {data, pengaruhModal, skalaUsaha, routeName} = this.state;
     return (
       <KeyboardAvoid>
         {() => (
@@ -164,33 +169,37 @@ class account extends Component {
                 ColorborderBottom={black}
                 required={true}
               />
-              <DropDown
-                label="Pengaruh Modal"
-                required={true}
-                datadropDown={pengaruhModal}
-                onValueChange={text =>
-                  this.setState({
-                    data: {...data, capitalInfluenceId: text},
-                  })
-                }
-                value={data.capitalInfluenceId}
-              />
-              <DropDown
-                label="Skala Usaha"
-                required={true}
-                datadropDown={skalaUsaha}
-                onValueChange={text =>
-                  this.setState({
-                    data: {...data, businessScaleId: text},
-                  })
-                }
-                value={data.businessScaleId}
-              />
+              {routeName === 'Admin001' || (
+                <>
+                  <DropDown
+                    label="Pengaruh Modal"
+                    required={true}
+                    datadropDown={pengaruhModal}
+                    onValueChange={text =>
+                      this.setState({
+                        data: {...data, capitalInfluenceId: text},
+                      })
+                    }
+                    value={data.capitalInfluenceId}
+                  />
+                  <DropDown
+                    label="Skala Usaha"
+                    required={true}
+                    datadropDown={skalaUsaha}
+                    onValueChange={text =>
+                      this.setState({
+                        data: {...data, businessScaleId: text},
+                      })
+                    }
+                    value={data.businessScaleId}
+                  />
+                </>
+              )}
               <Button title="Simpan" onPress={this.handleSave} color={color1} />
             </View>
             <View style={[styles.containerBottom, styles.padding40]}>
               <Button
-                title="Keluar"
+                title={'Keluar'}
                 onPress={this.handleLogout}
                 color="#fb3838"
               />
