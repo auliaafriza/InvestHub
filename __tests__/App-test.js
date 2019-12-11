@@ -1,29 +1,100 @@
-import React from 'react';
-import NavigationTestUtils from 'react-navigation/NavigationTestUtils';
-import renderer from 'react-test-renderer';
+var clusterMaker = require('../node_modules/clusters');
 
-import App from '../App';
+//number of iterations (higher number gives more time to converge), defaults to 1000
+const k = 3;
+clusterMaker.k(k);
+console.log('defined number of k cluster', 'k = ', k);
 
-jest.mock('expo', () => ({
-  AppLoading: 'AppLoading',
-}));
+const iterations = 750;
+clusterMaker.iterations(iterations);
+console.log('defined number of iteration kMeans', 'iterations = ', iterations);
 
-jest.mock('../navigation/AppNavigator', () => 'AppNavigator');
+const data = [
+  [80, 60, 80, 80, 60, 80, 60, 80, 80, 80],
+  [80, 60, 60, 80, 80, 60, 80, 60, 80, 60],
+  [80, 80, 80, 100, 80, 80, 80, 80, 60, 80],
+  [100, 80, 80, 80, 60, 80, 60, 80, 80, 100],
+  [80, 80, 100, 80, 60, 80, 100, 100, 80, 100],
+  [80, 100, 100, 100, 80, 100, 80, 100, 80, 100],
+  [100, 80, 100, 80, 60, 80, 80, 80, 80, 80],
+  [100, 60, 80, 100, 40, 80, 80, 100, 100, 100],
+  [80, 60, 100, 80, 40, 80, 80, 80, 100, 80],
+  [80, 60, 100, 80, 40, 60, 60, 80, 80, 80],
+  [80, 80, 80, 100, 80, 80, 80, 80, 60, 80],
+  [100, 80, 80, 80, 60, 80, 60, 80, 80, 100],
+  [80, 80, 100, 80, 60, 80, 100, 100, 80, 100],
+  [100, 60, 80, 100, 40, 80, 80, 100, 100, 100],
+  [80, 60, 100, 80, 40, 80, 80, 80, 100, 80],
+  [80, 80, 80, 100, 80, 80, 80, 80, 60, 80],
+  [80, 60, 80, 80, 60, 80, 60, 80, 80, 80],
+  [100, 60, 80, 100, 40, 80, 80, 100, 100, 100],
+  [80, 100, 100, 100, 80, 100, 80, 100, 80, 100],
+  [100, 80, 80, 80, 60, 80, 60, 80, 80, 100],
+];
+console.log('defined data for clustering kMeans', 'data = ', data);
 
-describe('App', () => {
-  jest.useFakeTimers();
+//data from which to identify clusters, defaults to []
+clusterMaker.data(data);
 
-  beforeEach(() => {
-    NavigationTestUtils.resetInternalState();
-  });
+const result = [
+  {
+    centroid: [
+      91.66666666666667,
+      66.66666666666667,
+      86.66666666666667,
+      85,
+      50,
+      78.33333333333333,
+      70,
+      85,
+      88.33333333333333,
+      90,
+    ],
+    points: [
+      [80, 60, 80, 80, 60, 80, 60, 80, 80, 80],
+      [100, 80, 80, 80, 60, 80, 60, 80, 80, 100],
+      [100, 80, 100, 80, 60, 80, 80, 80, 80, 80],
+      [100, 60, 80, 100, 40, 80, 80, 100, 100, 100],
+      [80, 60, 100, 80, 40, 80, 80, 80, 100, 80],
+      [80, 60, 100, 80, 40, 60, 60, 80, 80, 80],
+      [100, 80, 80, 80, 60, 80, 60, 80, 80, 100],
+      [100, 60, 80, 100, 40, 80, 80, 100, 100, 100],
+      [80, 60, 100, 80, 40, 80, 80, 80, 100, 80],
+      [80, 60, 80, 80, 60, 80, 60, 80, 80, 80],
+      [100, 60, 80, 100, 40, 80, 80, 100, 100, 100],
+      [100, 80, 80, 80, 60, 80, 60, 80, 80, 100],
+    ],
+  },
+  {
+    centroid: [80, 60, 60, 80, 80, 60, 80, 60, 80, 60],
+    points: [[80, 60, 60, 80, 80, 60, 80, 60, 80, 60]],
+  },
+  {
+    centroid: [
+      80,
+      85.71428571428571,
+      91.42857142857143,
+      94.28571428571429,
+      74.28571428571429,
+      85.71428571428571,
+      85.71428571428571,
+      91.42857142857143,
+      71.42857142857143,
+      91.42857142857143,
+    ],
+    points: [
+      [80, 80, 80, 100, 80, 80, 80, 80, 60, 80],
+      [80, 80, 100, 80, 60, 80, 100, 100, 80, 100],
+      [80, 100, 100, 100, 80, 100, 80, 100, 80, 100],
+      [80, 80, 80, 100, 80, 80, 80, 80, 60, 80],
+      [80, 80, 100, 80, 60, 80, 100, 100, 80, 100],
+      [80, 80, 80, 100, 80, 80, 80, 80, 60, 80],
+      [80, 100, 100, 100, 80, 100, 80, 100, 80, 100],
+    ],
+  },
+];
+console.log('defined result cluster kMeans', 'result = ', result);
 
-  it(`renders the loading screen`, () => {
-    const tree = renderer.create(<App />).toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
-  it(`renders the root without loading screen`, () => {
-    const tree = renderer.create(<App skipLoadingScreen />).toJSON();
-    expect(tree).toMatchSnapshot();
-  });
+test('Testing number of KMeans ', () => {
+  expect(clusterMaker.clusters()).toStrictEqual(result);
 });
