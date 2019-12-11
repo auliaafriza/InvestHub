@@ -13,7 +13,10 @@
   "dependencies": {
     "@expo/vector-icons": "^10.0.6",
     "axios": "^0.19.0",
+    "clusters": "0.0.4",
     "expo": "^33.0.0",
+    "expo-location": "~5.0.1",
+    "expo-task-manager": "~5.0.1",
     "moments": "0.0.2",
     "prop-types": "^15.7.2",
     "react": "16.8.3",
@@ -35,9 +38,13 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-form": "^8.2.6",
     "redux-promise-middleware": "^6.1.1",
-    "redux-thunk": "^2.3.0",
-    "expo-task-manager": "~5.0.1",
-    "expo-location": "~5.0.1"
+    "redux-thunk": "^2.3.0"
+  },
+  "jest": {
+    "preset": "jest-expo",
+    "transformIgnorePatterns": [
+      "node_modules/(?!((jest-)?react-native|react-clone-referenced-element|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|sentry-expo|native-base))"
+    ]
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
@@ -47,8 +54,11 @@
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-native": "^3.8.1",
+    "jest": "^24.9.0",
+    "jest-expo": "^35.0.0",
     "prettier": "^1.18.2",
-    "react-native-debugger-open": "^0.3.22"
+    "react-native-debugger-open": "^0.3.22",
+    "react-test-renderer": "^16.12.0"
   },
   "private": true
 }
