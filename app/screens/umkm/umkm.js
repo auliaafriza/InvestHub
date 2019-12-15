@@ -9,15 +9,15 @@ import PropTypes from 'prop-types';
 import {Card, CardList} from '../../components/card';
 import {ScrollView} from 'react-native-gesture-handler';
 import Loading from '../../components/loading/loading';
-import {View, Button, Text} from 'react-native';
+import {View, Button, Text, AsyncStorage} from 'react-native';
 import {styles} from '../styles';
 class umkm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       Nama: 'UMKM',
-      PengaruhModal: 'Resiko Kecil',
-      Skala: 'Mikro',
+      PengaruhModal: 'rendah',
+      Skala: 'rumahan',
       alamat: 'Jalan Malabar nomor 24 Bogor Tengah, Jawa Barat',
       status: 'active',
       data: [],
@@ -35,20 +35,24 @@ class umkm extends Component {
     dispatch: PropTypes.func,
     // userAll: PropTypes.array,
   };
-  componentDidMount() {
-    this.props.dispatch(getUmkmAllAction());
+
+  async componentDidMount() {
+    const data = JSON.parse(await AsyncStorage.getItem('dataInvest'));
+    this.props.dispatch(getUmkmAllAction(data));
   }
 
   componentDidUpdate() {
     if (this.props.umkmAllStatus) {
-      this.setState({data: this.props.umkmAll.data});
+      this.setState({data: this.props.umkmAll});
       this.props.dispatch(resetUmkmAction());
     }
   }
+
   handleDetail = data => {
     data.status = 'UMKM';
     this.props.navigation.navigate('DetailUmkmPage', {
       data: data,
+      type: 'edit',
     });
   };
 
@@ -56,6 +60,7 @@ class umkm extends Component {
     const {dataObj} = this.state;
     this.props.navigation.navigate('DetailUmkmPage', {
       data: dataObj,
+      type: 'add',
     });
   };
 
@@ -82,9 +87,9 @@ class umkm extends Component {
                 <CardList
                   Nama={obj.nama}
                   onPress={() => this.handleDetail(obj)}
-                  // PengaruhModal={PengaruhModal}
-                  // Skala={Skala}
-                  alamat={obj.address}
+                  PengaruhModal={obj.PengaruhModal ? obj.PengaruhModal : ''}
+                  Skala={obj.KarakteristikUsaha ? obj.KarakteristikUsaha : ''}
+                  alamat={obj.alamat}
                   status={obj.active === '1' ? 'active' : 'deactive'}
                   type="umkm"
                   key={i}
