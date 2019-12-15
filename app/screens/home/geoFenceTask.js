@@ -51,9 +51,17 @@ const buildRegions = () => {
     position => {
       return [
         {
-          identifier: 'north_pole',
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
+          identifier: 'Bakso Misterius',
+          latitude: -6.588762,
+          longitude: 106.816613,
+          radius: 500,
+          notifyOnEnter: true,
+          notifyOnExit: true,
+        },
+        {
+          identifier: 'Dailydose Coffee & Eatery',
+          latitude: -6.587967,
+          longitude: 106.816557,
           radius: 500,
           notifyOnEnter: true,
           notifyOnExit: true,
