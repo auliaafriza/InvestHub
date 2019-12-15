@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {KeyboardAvoid} from '../../../components/keyboardAvoid';
 import {connect} from 'react-redux';
 import {getUmkmAllAction} from '../../../action/umkmAction/umkmAction';
-
+import {postTopUpAction} from '../../../action/investAction/investAction';
 import {View, Button, Alert, AsyncStorage} from 'react-native';
 import {styles, black, color1} from '../../styles';
 import {TextInput, DropDown} from '../../../components/textInput';
@@ -15,6 +15,7 @@ class detailUmkm extends Component {
     this.state = {
       data: this.props.navigation.state.params.data,
       contentButton: 'Edit',
+      nominal: 0,
       karateristikUsaha: [
         {
           Id: 'mikro',
@@ -74,7 +75,11 @@ class detailUmkm extends Component {
       PengaruhModal: data.PengaruhModal,
       KarakteristikUsaha: data.KarakteristikUsaha,
     };
-    data.status === 'UMKM' ? this.handleAddData(mod) : this.handleEditData(mod);
+    data.status === 'UMKM'
+      ? this.handleAddData(mod)
+      : this.props.navigation.state.params.type === 'deal'
+      ? this.handleInvest(mod)
+      : this.handleEditData(mod);
   };
 
   handleAddData = mod => {
@@ -91,7 +96,7 @@ class detailUmkm extends Component {
     let indexFind = dataSplice.findIndex(item => item.Id === mod.Id);
     indexFind !== -1 ? dataSplice.splice(indexFind, 1, mod) : dataSplice;
     AsyncStorage.setItem('dataInvest', JSON.stringify(dataSplice));
-    this.handleAlert('Data Berhasil di Invest');
+    this.handleAlert('Data Berhasil di Edit');
     this.props.dispatch(getUmkmAllAction(dataSplice));
   };
 
@@ -111,6 +116,23 @@ class detailUmkm extends Component {
       ],
       {cancelable: false}
     );
+  };
+
+  handleInvest = mod => {
+    if (this.props.postTopUp > this.state.nominal) {
+      let dataSplice = [...this.props.umkmAll];
+      mod.Id = dataSplice.length + 1;
+      dataSplice.push(mod);
+      let topUpNominal =
+        parseInt(this.props.postTopUp) - parseInt(this.state.nominal);
+      AsyncStorage.setItem('topUp', JSON.stringify(topUpNominal));
+      AsyncStorage.setItem('dataInvest', JSON.stringify(dataSplice));
+      this.handleAlert('Data Berhasil di Invest');
+      this.props.dispatch(postTopUpAction(topUpNominal));
+      this.props.dispatch(getUmkmAllAction(dataSplice));
+    } else {
+      this.handleAlert('Data nominal lebih besar dari balance');
+    }
   };
 
   handleDeleteData = Id => {
@@ -143,6 +165,7 @@ class detailUmkm extends Component {
     let {
       data,
       contentButton,
+      nominal,
       karateristikUsaha,
       pengaruhModal,
       activeStatus,
@@ -215,6 +238,22 @@ class detailUmkm extends Component {
                   }
                   value={data.active}
                 />
+              ) : this.props.navigation.state.params.type === 'deal' ? (
+                <TextInput
+                  label="Nominal"
+                  placeholder="Nominal"
+                  containerWidth="100%"
+                  containerHeight={45}
+                  value={nominal}
+                  onChangeText={text =>
+                    this.setState({
+                      nominal: text,
+                    })
+                  }
+                  ColorborderBottom={black}
+                  required={true}
+                  keyboardType="numeric"
+                />
               ) : null}
               {data.status === 'UMKM' ? (
                 <Button
@@ -253,6 +292,7 @@ const mapStateToProps = state => ({
   putUmkmStatus: state.umkmReducer.putUmkmStatus,
   deleteUmkmStatus: state.umkmReducer.deleteUmkmStatus,
   umkmAll: state.umkmReducer.umkmAll,
+  postTopUp: state.investReducer.postTopUp,
 });
 
 export default connect(mapStateToProps)(detailUmkm);

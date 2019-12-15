@@ -1,21 +1,64 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Button, Modal} from 'react-native';
+import {
+  AsyncStorage,
+  StyleSheet,
+  Alert,
+  View,
+  Button,
+  Modal,
+} from 'react-native';
+import {connect} from 'react-redux';
 import {TextInput} from '../../components/textInput';
 import {mainColor, styles} from '../styles';
+import {postTopUpAction} from '../../action/investAction/investAction';
+import PropTypes from 'prop-types';
+class modalTopUp extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isVisible: false,
+      value: '', //state of modal default false
+    };
+  }
 
-export default class App extends Component {
-  state = {
-    isVisible: false, //state of modal default false
+  static propTypes = {
+    dispatch: PropTypes.func,
   };
+
+  handleTopUp = () => {
+    let topUp = parseInt(this.state.value) + parseInt(this.props.postTopUp);
+    AsyncStorage.setItem('topUp', JSON.stringify(topUp));
+    this.handleAlert('Berhasil TopUp');
+    this.setState({isVisible: false});
+    this.props.dispatch(postTopUpAction(topUp));
+    this.props.onPress;
+  };
+
+  onPress = () => {
+    this.setState({isVisible: false});
+  };
+
+  handleAlert = message => {
+    Alert.alert(
+      'Success',
+      message,
+      [
+        {
+          text: 'Ok',
+        },
+      ],
+      {cancelable: false}
+    );
+  };
+
   render() {
-    const {modalVisible, onPress} = this.props;
     return (
       <View>
         <Modal
           animationType={'fade'}
           transparent={true}
-          visible={modalVisible}
-          onRequestClose={onPress}
+          visible={this.props.modalVisible}
+          onRequestClose={this.props.onPress}
         >
           <View style={styles.modal}>
             <View
@@ -28,15 +71,24 @@ export default class App extends Component {
                 border={true}
                 containerWidth="80%"
                 containerHeight={35}
-                //   value={valuePass}
-                //   onChangeText={onChangeTextPass}
+                value={`${this.state.value}`}
+                onChangeText={text =>
+                  this.setState({
+                    value: text,
+                  })
+                }
+                keyboardType="numeric"
               />
               <View style={styles.styleRowButton}>
                 <View style={styles.paddingRight5}>
-                  <Button title="Close" onPress={onPress} color="red" />
+                  <Button
+                    title="Close"
+                    onPress={this.props.onPress}
+                    color="red"
+                  />
                 </View>
                 <View style={styles.paddingLeft5}>
-                  <Button title="Top up" />
+                  <Button title="Top up" onPress={() => this.handleTopUp()} />
                 </View>
               </View>
             </View>
@@ -46,3 +98,9 @@ export default class App extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  postTopUp: state.investReducer.postTopUp,
+});
+
+export default connect(mapStateToProps)(modalTopUp);

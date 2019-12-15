@@ -447,14 +447,22 @@ import {
   Text,
   View,
   TouchableOpacity,
+  Button,
+  Modal,
   AsyncStorage,
+  TextInput,
+  Alert,
 } from 'react-native';
 import {Notifications} from 'expo';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 import MapView from 'react-native-maps';
 import Geofence from 'react-native-expo-geofence';
 import {dataDummy} from './dummayData';
 import axios from 'axios';
 import * as Permissions from 'expo-permissions';
+import ModalExample from './modalTopUp';
+import {postTopUpAction} from '../../action/investAction/investAction';
 
 var fakePoints = [
   {
@@ -482,16 +490,17 @@ var fakePoints = [
     title: 'Bakso PMI Panduraya',
   },
 ];
-
-export default class App extends React.Component {
-  constructor() {
-    super();
+class App extends React.Component {
+  constructor(props) {
+    super(props);
     Geofence.Log = true;
     this.state = {
       distance: 700,
       showCircle: true,
       markers: [],
       notification: {},
+      modalVisible: false,
+      value: 0,
       region: {
         latitude: -6.5885009,
         longitude: 106.8168241,
@@ -503,7 +512,14 @@ export default class App extends React.Component {
     // console.disableYellowBox = true;
   }
 
-  componentDidMount() {
+  static propTypes = {
+    dispatch: PropTypes.func,
+    postTopUp: PropTypes.number,
+  };
+
+  async componentDidMount() {
+    const data = JSON.parse(await AsyncStorage.getItem('topUp'));
+    this.props.dispatch(postTopUpAction(data));
     navigator.geolocation.getCurrentPosition(
       //Will give you the current location
       position => {
@@ -626,21 +642,69 @@ export default class App extends React.Component {
     });
   }
 
+  setModalVisible = () => {
+    const {modalVisible} = this.state;
+    this.setState({modalVisible: !modalVisible});
+  };
+
   render() {
-    const {region} = this.state;
     return (
-      <View style={styles.container}>
-        <MapView style={styles.map} initialRegion={region}>
+      <View style={stylesHome.container}>
+        <View
+          style={[
+            stylesHome.center,
+            {
+              marginTop: 100,
+            },
+          ]}
+        >
+          <View style={stylesHome.cardUserHome}>
+            <View style={stylesHome.row100}>
+              <View style={[stylesHome.width50, stylesHome.rowStart]}>
+                <Text style={[stylesHome.text18, {color: 'black'}]}>
+                  Balance
+                </Text>
+                <Text style={[stylesHome.text18, {color: 'black'}]}>
+                  Rp {this.props.postTopUp}
+                </Text>
+              </View>
+              <View style={[stylesHome.width50, stylesHome.rowStart]}>
+                <View style={{marginLeft: 70}}>
+                  <Button
+                    onPress={this.setModalVisible}
+                    title="Top Up"
+                    color="#262261"
+                  />
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+
+        <ModalExample
+          modalVisible={this.state.modalVisible}
+          onPress={() =>
+            this.setState({
+              modalVisible: !this.state.modalVisible,
+            })
+          }
+        />
+
+        <MapView style={stylesHome.map} initialRegion={this.state.region}>
           {this.state.showCircle ? (
             <MapView.Circle
-              center={region}
+              center={this.state.region}
               radius={this.state.distance}
               strokeColor="transparent"
               fillColor="rgba(0, 100, 180, 0.2)"
             />
           ) : null}
-          <MapView.Marker coordinate={region} title="me" description={null}>
-            <View style={styles.meStyle} />
+          <MapView.Marker
+            coordinate={this.state.region}
+            title="me"
+            description={null}
+          >
+            <View style={stylesHome.meStyle} />
           </MapView.Marker>
           {this.state.markers.map((marker, index) => (
             <MapView.Marker
@@ -651,23 +715,23 @@ export default class App extends React.Component {
             />
           ))}
         </MapView>
-        <View style={styles.controlsContainer}>
+        <View style={stylesHome.controlsContainer}>
           <TouchableOpacity
             onPress={this.handleDecrease.bind(this)}
-            style={styles.button}
+            style={stylesHome.button}
           >
-            <Text style={styles.buttonText}>-</Text>
+            <Text style={stylesHome.buttonText}>-</Text>
           </TouchableOpacity>
-          <Text style={styles.distanceText}>
+          <Text style={stylesHome.distanceText}>
             {this.state.distance > 999
               ? this.state.distance / 1000 + ' KM'
               : this.state.distance + ' m'}
           </Text>
           <TouchableOpacity
             onPress={() => this.handleIncrease()}
-            style={styles.button}
+            style={stylesHome.button}
           >
-            <Text style={styles.buttonText}>+</Text>
+            <Text style={stylesHome.buttonText}>+</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -676,11 +740,21 @@ export default class App extends React.Component {
 }
 
 // define your styles
-const styles = StyleSheet.create({
+const stylesHome = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  padding20: {
+    padding: 20,
+  },
+  row100: {
+    flexDirection: 'row',
+    width: '90%',
+  },
+  width50: {
+    width: '50%',
   },
   button: {
     flex: 1,
@@ -715,8 +789,27 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#dbdbdb',
   },
+  center: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   map: {
     width: '100%',
     height: '100%',
   },
+  cardUserHome: {
+    width: '100%',
+    height: 70,
+    borderColor: '#252525',
+    borderWidth: 1,
+    marginBottom: 10,
+    padding: 10,
+    backgroundColor: 'white',
+  },
 });
+
+const mapStateToProps = state => ({
+  postTopUp: state.investReducer.postTopUp,
+});
+
+export default connect(mapStateToProps)(App);
