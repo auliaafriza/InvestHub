@@ -1,22 +1,18 @@
-import {
-  getNotificationsApi,
-  getNotificationsByIdApi,
-  postNotificationsApi,
-} from '../../api/investasiApi/getInvestasiByIdApi';
+import {getNotificationsByIdApi} from '../../api/notificationApi/getNotificationByUserIdApi';
 import {
   GET_NOTIFICATIONS,
   GET_NOTIFICATIONS_BY_ID,
   POST_NOTIFICATIONS,
 } from '../actionTypes';
 
-const getNotifications = () => {
-  return dispatch => {
-    return dispatch({
-      type: GET_NOTIFICATIONS,
-      payload: getNotificationsApi(),
-    });
-  };
-};
+// const getNotifications = () => {
+//   return dispatch => {
+//     return dispatch({
+//       type: GET_NOTIFICATIONS,
+//       payload: getNotificationsApi(),
+//     });
+//   };
+// };
 
 const getNotificationsById = data => {
   return dispatch => {
@@ -27,13 +23,13 @@ const getNotificationsById = data => {
   };
 };
 
-const postNotifications = data => {
-  return dispatch => {
-    return dispatch({
-      type: POST_NOTIFICATIONS,
-      payload: postNotificationsApi(data),
-    });
-  };
-};
+// const postNotifications = data => {
+//   return dispatch => {
+//     return dispatch({
+//       type: POST_NOTIFICATIONS,
+//       payload: postNotificationsApi(data),
+//     });
+//   };
+// };
 
-export {getNotifications, getNotificationsById, postNotifications};
+export {getNotificationsById};
