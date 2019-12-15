@@ -31,8 +31,7 @@
         "googleMaps": {
           "apiKey": "AIzaSyBbc1Z03u14MO5i_EAyJbezzVpptCdsE9c"
         }
-      },
-      "permissions": ["NOTIFICATIONS"]
+      }
     }
   }
 }

@@ -34,6 +34,7 @@ import {ScrollView} from 'react-native-gesture-handler';
 import Loading from '../../components/loading/loading';
 import {View, Button, Text, AsyncStorage} from 'react-native';
 import {styles} from '../styles';
+import {dataUMKM} from '../home/dummayData';
 class umkm extends Component {
   constructor(props) {
     super(props);
@@ -56,7 +57,7 @@ class umkm extends Component {
 
   async componentDidMount() {
     const data = JSON.parse(await AsyncStorage.getItem('dataInvest'));
-    this.props.dispatch(getUmkmAllAction(data));
+    this.props.dispatch(getUmkmAllAction(data ? data : dataUMKM));
   }
 
   componentDidUpdate() {
