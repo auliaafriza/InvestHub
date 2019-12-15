@@ -519,7 +519,7 @@ class App extends React.Component {
 
   async componentDidMount() {
     const data = JSON.parse(await AsyncStorage.getItem('topUp'));
-    this.props.dispatch(postTopUpAction(data));
+    this.props.dispatch(postTopUpAction(data ? data : 0));
     navigator.geolocation.getCurrentPosition(
       //Will give you the current location
       position => {
