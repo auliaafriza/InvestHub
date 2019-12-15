@@ -3,13 +3,9 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {KeyboardAvoid} from '../../../components/keyboardAvoid';
 import {connect} from 'react-redux';
-import {
-  resetUmkmAction,
-  postUmkmAction,
-  deleteUmkmAction,
-  putUmkmAction,
-} from '../../../action/umkmAction/umkmAction';
-import {View, Button, Alert} from 'react-native';
+import {getUmkmAllAction} from '../../../action/umkmAction/umkmAction';
+
+import {View, Button, Alert, AsyncStorage} from 'react-native';
 import {styles, black, color1} from '../../styles';
 import {TextInput, DropDown} from '../../../components/textInput';
 
@@ -21,16 +17,16 @@ class detailUmkm extends Component {
       contentButton: 'Edit',
       karateristikUsaha: [
         {
-          Id: 'rumahan',
-          Nama: 'UMKM skala rumahan',
+          Id: 'mikro',
+          Nama: 'Mikro',
         },
         {
-          Id: 'tempatusaha',
-          Nama: 'UMKM skala bertempat usaha',
+          Id: 'kecil',
+          Nama: 'Kecil',
         },
         {
-          Id: 'produksi',
-          Nama: 'UMKM skala produksi',
+          Id: 'menengah',
+          Nama: 'Menengah',
         },
       ],
       pengaruhModal: [
@@ -47,36 +43,56 @@ class detailUmkm extends Component {
           Nama: 'Resiko Tinggi',
         },
       ],
+      activeStatus: [
+        {
+          Id: '1',
+          Nama: 'active',
+        },
+        {
+          Id: '2',
+          Nama: 'deactive',
+        },
+      ],
     };
   }
 
   static propTypes = {
     dispatch: PropTypes.func,
     navigation: PropTypes.object,
+    umkmAll: PropTypes.array,
   };
 
-  componentDidUpdate() {
-    if (this.props.postUmkmStatus) {
-      this.props.dispatch(resetUmkmAction());
-      this.handleAlert('Data Berhasil di Tambah');
-    }
-    if (this.props.putUmkmStatus) {
-      this.props.dispatch(resetUmkmAction());
-      this.handleAlert('Data Berhasil di Ubah');
-    }
-    if (this.props.deleteUmkmStatus) {
-      this.props.dispatch(resetUmkmAction());
-      this.handleAlert('Data Berhasil di Hapus');
-    }
-  }
   handleSave = () => {
-    const {contentButton} = this.state;
-    // if (contentButton === 'Edit') {
-    //   this.setState({contentButton: 'Save'});
-    // } else {
-    //   this.handleSaveUmkm();
-    // }
-    this.handleSaveUmkm();
+    const {data} = this.state;
+    let mod = {
+      Id: data.Id,
+      nama: data.nama,
+      alamat: data.alamat,
+      long: data.longitude,
+      lat: data.latitude,
+      active: data.active,
+      PengaruhModal: data.PengaruhModal,
+      KarakteristikUsaha: data.KarakteristikUsaha,
+    };
+    data.status === 'UMKM' ? this.handleAddData(mod) : this.handleEditData(mod);
+  };
+
+  handleAddData = mod => {
+    let dataSplice = [...this.props.umkmAll];
+    mod.Id = dataSplice.length + 1;
+    dataSplice.push(mod);
+    AsyncStorage.setItem('dataInvest', JSON.stringify(dataSplice));
+    this.handleAlert('Data Berhasil di Tambah');
+    this.props.dispatch(getUmkmAllAction(dataSplice));
+  };
+
+  handleEditData = mod => {
+    let dataSplice = [...this.props.umkmAll];
+    let indexFind = dataSplice.findIndex(item => item.Id === mod.Id);
+    indexFind !== -1 ? dataSplice.splice(indexFind, 1, mod) : dataSplice;
+    AsyncStorage.setItem('dataInvest', JSON.stringify(dataSplice));
+    this.handleAlert('Data Berhasil di Invest');
+    this.props.dispatch(getUmkmAllAction(dataSplice));
   };
 
   handleDelete = () => {
@@ -90,11 +106,20 @@ class detailUmkm extends Component {
         },
         {
           text: 'Yakin',
-          onPress: () => this.props.dispatch(deleteUmkmAction(data)),
+          onPress: () => this.handleDeleteData(data.Id),
         },
       ],
       {cancelable: false}
     );
+  };
+
+  handleDeleteData = Id => {
+    let dataSplice = [...this.props.umkmAll];
+    let indexFind = dataSplice.findIndex(item => item.Id === Id);
+    indexFind !== -1 ? dataSplice.splice(indexFind, 1) : dataSplice;
+    AsyncStorage.setItem('dataInvest', JSON.stringify(dataSplice));
+    this.handleAlert('Data Berhasil di Hapus');
+    this.props.dispatch(getUmkmAllAction(dataSplice));
   };
 
   handleAlert = message => {
@@ -104,31 +129,24 @@ class detailUmkm extends Component {
       [
         {
           text: 'Ok',
-          onPress: () => this.props.navigation.navigate('UMKM'),
+          onPress: () =>
+            this.props.navigation.state.params.type === 'deal'
+              ? this.props.navigation.navigate('Deal')
+              : this.props.navigation.navigate('UMKM'),
         },
       ],
       {cancelable: false}
     );
   };
-  handleSaveUmkm = () => {
-    const {data} = this.state;
-    let mod = {
-      Id: data.Id,
-      nama: data.nama,
-      alamat: data.address,
-      long: data.longitude,
-      lat: data.latitude,
-      active: data.active,
-    };
-    if (Number(data.Id > 0)) {
-      this.props.dispatch(putUmkmAction(mod));
-    } else {
-      this.props.dispatch(postUmkmAction([mod]));
-    }
-  };
 
   render() {
-    let {data, contentButton, karateristikUsaha, pengaruhModal} = this.state;
+    let {
+      data,
+      contentButton,
+      karateristikUsaha,
+      pengaruhModal,
+      activeStatus,
+    } = this.state;
     return (
       <KeyboardAvoid>
         {() => (
@@ -147,7 +165,6 @@ class detailUmkm extends Component {
                 }
                 ColorborderBottom={black}
                 required={true}
-                disable={true}
               />
 
               <TextInput
@@ -155,30 +172,50 @@ class detailUmkm extends Component {
                 placeholder="Alamat"
                 containerWidth="100%"
                 containerHeight={45}
-                value={data.address}
+                value={data.alamat}
                 onChangeText={text =>
                   this.setState({
-                    data: {...data, address: text},
+                    data: {...data, alamat: text},
                   })
                 }
                 ColorborderBottom={black}
                 required={true}
-                disable={true}
               />
               <DropDown
                 label="Pengaruh Modal"
                 required={true}
                 datadropDown={pengaruhModal}
-                // onValueChange={onChangeTextPengaruhModal}
+                onValueChange={text =>
+                  this.setState({
+                    data: {...data, PengaruhModal: text},
+                  })
+                }
                 value={data.PengaruhModal}
               />
               <DropDown
                 label="Karakteristik Usaha"
                 required={true}
                 datadropDown={karateristikUsaha}
-                // onValueChange={onChangeTextKarateristikUsaha}
+                onValueChange={text =>
+                  this.setState({
+                    data: {...data, KarakteristikUsaha: text},
+                  })
+                }
                 value={data.KarakteristikUsaha}
               />
+              {this.props.navigation.state.params.type === 'add' ? (
+                <DropDown
+                  label="Status"
+                  required={true}
+                  datadropDown={activeStatus}
+                  onValueChange={text =>
+                    this.setState({
+                      data: {...data, active: text},
+                    })
+                  }
+                  value={data.active}
+                />
+              ) : null}
               {data.status === 'UMKM' ? (
                 <Button
                   title={'Simpan'}
@@ -188,7 +225,7 @@ class detailUmkm extends Component {
               ) : (
                 <Button
                   title={'Invest'}
-                  // onPress={this.handleSave}
+                  onPress={this.handleSave}
                   color={color1}
                 />
               )}
@@ -215,6 +252,7 @@ const mapStateToProps = state => ({
   postUmkmStatus: state.umkmReducer.postUmkmStatus,
   putUmkmStatus: state.umkmReducer.putUmkmStatus,
   deleteUmkmStatus: state.umkmReducer.deleteUmkmStatus,
+  umkmAll: state.umkmReducer.umkmAll,
 });
 
 export default connect(mapStateToProps)(detailUmkm);

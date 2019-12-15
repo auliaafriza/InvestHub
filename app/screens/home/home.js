@@ -442,9 +442,19 @@
 // });
 
 import React from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import {MapView} from 'expo';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  AsyncStorage,
+} from 'react-native';
+import {Notifications} from 'expo';
+import MapView from 'react-native-maps';
 import Geofence from 'react-native-expo-geofence';
+import {dataDummy} from './dummayData';
+import axios from 'axios';
+import * as Permissions from 'expo-permissions';
 
 var fakePoints = [
   {
@@ -481,6 +491,7 @@ export default class App extends React.Component {
       distance: 700,
       showCircle: true,
       markers: [],
+      notification: {},
       region: {
         latitude: -6.5885009,
         longitude: 106.8168241,
@@ -493,12 +504,6 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    // var markers = Geofence.filterByProximity(
-    //   this.state.region,
-    //   fakePoints,
-    //   this.state.distance / 1000
-    // );
-    // this.setState({markers});
     navigator.geolocation.getCurrentPosition(
       //Will give you the current location
       position => {
@@ -520,10 +525,73 @@ export default class App extends React.Component {
         });
       },
       error => alert(error.message),
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+      {
+        enableHighAccuracy: true,
+        timeout: 20000,
+        maximumAge: 1000,
+      }
     );
-    console.log(this.state);
+    //console.log(this.state);
+    this.getNotif();
+    this._notificationSubscription = Notifications.addListener(
+      this._handleNotification
+    );
+    this.showNotif();
   }
+
+  addDataNew = () => {
+    let data = fakePoints;
+    dataDummy.map(item => {
+      data.push(item);
+    });
+    data.length >= fakePoints.length ? this.showNotif() : null;
+  };
+
+  getNotif = async () => {
+    const {status} = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+    if (status !== 'granted') {
+      Alert.alert('Please give permissions');
+      return;
+    }
+    const token = await Notifications.getExpoPushTokenAsync();
+    try {
+      return await axios
+        .post('https://your-server.com/users/push-token', {
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            token: {
+              value: token,
+            },
+          }),
+        })
+        .then(res => {
+          console.log('res', res);
+        });
+    } catch (error) {
+      console.log('error', error);
+    }
+  };
+
+  showNotif = () => {
+    let localNotification = {
+      title: 'Hai Sobat InvestHub',
+      body: 'Ada yang baru loh',
+    };
+    const schedulingOptions = {
+      repeat: 'day',
+    };
+    Notifications.scheduleLocalNotificationAsync(
+      localNotification,
+      schedulingOptions
+    );
+  };
+
+  _handleNotification = notification => {
+    this.setState({notification: notification});
+  };
 
   handleDecrease() {
     if (this.state.distance == 700) {
@@ -543,6 +611,7 @@ export default class App extends React.Component {
     } else if (this.state.distance == 1000) {
       this.changeDistance(5000);
     }
+    this.addDataNew();
   }
 
   changeDistance(value) {
@@ -595,7 +664,7 @@ export default class App extends React.Component {
               : this.state.distance + ' m'}
           </Text>
           <TouchableOpacity
-            onPress={this.handleIncrease.bind(this)}
+            onPress={() => this.handleIncrease()}
             style={styles.button}
           >
             <Text style={styles.buttonText}>+</Text>

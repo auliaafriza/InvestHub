@@ -7,7 +7,7 @@
     "platforms": ["ios", "android"],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/images/InvesthubIcon.png",
     "splash": {
       "image": "./assets/images/splashScreen.png",
       "resizeMode": "contain",
@@ -15,6 +15,10 @@
     },
     "updates": {
       "fallbackToCacheTimeout": 0
+    },
+    "notification": {
+      "icon": "./assets/images/TantanSquare.png",
+      "color": "#262261"
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
@@ -27,7 +31,8 @@
         "googleMaps": {
           "apiKey": "AIzaSyBbc1Z03u14MO5i_EAyJbezzVpptCdsE9c"
         }
-      }
+      },
+      "permissions": ["NOTIFICATIONS"]
     }
   }
 }

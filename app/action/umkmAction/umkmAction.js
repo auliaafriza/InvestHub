@@ -14,20 +14,20 @@ import {
   DELETE_UMKM,
 } from '../actionTypes';
 
-const getUmkmAllAction = () => {
+const getUmkmAllAction = data => {
   return dispatch => {
     return dispatch({
       type: GET_UMKM_ALL,
-      payload: getUmkmAllApi(),
+      payload: data,
     });
   };
 };
 
-const getUmkmByIdAction = id => {
+const getUmkmByIdAction = data => {
   return dispatch => {
     return dispatch({
       type: GET_UMKM_BY_ID,
-      payload: getUmkmByIdApi(id),
+      payload: data,
     });
   };
 };
@@ -36,7 +36,7 @@ const postUmkmAction = data => {
   return dispatch => {
     return dispatch({
       type: POST_UMKM,
-      payload: postUmkmApi(data),
+      payload: data,
     });
   };
 };

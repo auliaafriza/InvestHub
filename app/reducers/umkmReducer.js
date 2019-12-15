@@ -21,7 +21,7 @@ const reducer = (state = initialState, action) => {
     // GET_UMKM_ALL
     //---------------------------------
     case types.GET_UMKM_ALL:
-      return {...state};
+      return {...state, umkmAll: action.payload, umkmAllStatus: true};
     case types.GET_UMKM_ALL_PENDING:
       return {...state, loading: true};
     case types.GET_UMKM_ALL_FULFILLED:
@@ -40,7 +40,7 @@ const reducer = (state = initialState, action) => {
       };
 
     case types.GET_UMKM_BY_ID:
-      return {...state};
+      return {...state, umkmById: action.payload};
     case types.GET_UMKM_BY_ID_PENDING:
       return {...state, loading: true};
     case types.GET_UMKM_BY_ID_FULFILLED:
@@ -59,7 +59,7 @@ const reducer = (state = initialState, action) => {
       };
 
     case types.POST_UMKM:
-      return {...state};
+      return {...state, postUmkm: action.payload};
     case types.POST_UMKM_PENDING:
       return {...state, loading: true};
     case types.POST_UMKM_FULFILLED:

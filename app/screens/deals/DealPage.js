@@ -32,7 +32,7 @@ import PropTypes from 'prop-types';
 import {Card, CardList} from '../../components/card';
 import {ScrollView} from 'react-native-gesture-handler';
 import Loading from '../../components/loading/loading';
-import {View, Button, Text} from 'react-native';
+import {View, Button, Text, AsyncStorage} from 'react-native';
 import {styles} from '../styles';
 class umkm extends Component {
   constructor(props) {
@@ -52,19 +52,23 @@ class umkm extends Component {
     dispatch: PropTypes.func,
     // userAll: PropTypes.array,
   };
-  componentDidMount() {
-    this.props.dispatch(getUmkmAllAction());
+
+  async componentDidMount() {
+    const data = JSON.parse(await AsyncStorage.getItem('dataInvest'));
+    this.props.dispatch(getUmkmAllAction(data));
   }
 
   componentDidUpdate() {
     if (this.props.umkmAllStatus) {
-      this.setState({data: this.props.umkmAll.data});
+      this.setState({data: this.props.umkmAll});
       this.props.dispatch(resetUmkmAction());
     }
   }
+
   handleDetail = data => {
     this.props.navigation.navigate('DetailUmkmPage', {
       data: data,
+      type: 'deal',
     });
   };
 
@@ -86,21 +90,27 @@ class umkm extends Component {
           </Text>
           <ScrollView>
             <Card>
-              {data.map(
-                (obj, i) =>
-                  obj.active === '1' && (
-                    <CardList
-                      Nama={obj.nama}
-                      onPress={() => this.handleDetail(obj)}
-                      // PengaruhModal={PengaruhModal}
-                      // Skala={Skala}
-                      alamat={obj.address}
-                      status={obj.active === '1' ? 'active' : 'deactive'}
-                      type="umkm"
-                      key={i}
-                    />
+              {data.length != 0
+                ? data.map(
+                    (obj, i) =>
+                      obj.active === '1' && (
+                        <CardList
+                          Nama={obj.nama}
+                          onPress={() => this.handleDetail(obj)}
+                          PengaruhModal={
+                            obj.PengaruhModal ? obj.PengaruhModal : ''
+                          }
+                          Skala={
+                            obj.KarakteristikUsaha ? obj.KarakteristikUsaha : ''
+                          }
+                          alamat={obj.alamat}
+                          status={obj.active === '1' ? 'active' : 'deactive'}
+                          type="umkm"
+                          key={i}
+                        />
+                      )
                   )
-              )}
+                : null}
             </Card>
           </ScrollView>
         </View>
