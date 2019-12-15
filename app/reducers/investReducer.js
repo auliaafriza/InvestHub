@@ -7,7 +7,7 @@ const initialState = {
   postInvest: {},
   postInvestStatus: null,
   errors: {},
-  postTopUp: {},
+  postTopUp: 0,
   postTopUpStatus: null,
 };
 
@@ -38,7 +38,7 @@ const reducer = (state = initialState, action) => {
     // POST_INVEST
     //---------------------------------
     case types.POST_INVEST:
-      return {...state};
+      return {...state, postTopUp: action.payload};
     case types.POST_INVEST_PENDING:
       return {...state, loading: true};
     case types.POST_INVEST_FULFILLED:
@@ -59,7 +59,7 @@ const reducer = (state = initialState, action) => {
     // POST_TOP_UP
     //---------------------------------
     case types.POST_TOP_UP:
-      return {...state};
+      return {...state, postTopUp: action.payload};
     case types.POST_TOP_UP_PENDING:
       return {...state, loading: true};
     case types.POST_TOP_UP_FULFILLED:

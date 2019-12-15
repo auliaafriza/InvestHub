@@ -27,7 +27,7 @@ const postTopUpAction = data => {
   return dispatch => {
     return dispatch({
       type: POST_TOP_UP,
-      payload: postTopUpApi(data),
+      payload: data,
     });
   };
 };

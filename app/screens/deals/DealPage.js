@@ -45,6 +45,7 @@ class umkm extends Component {
         long: '',
         lat: '',
         active: 1,
+        nominal: 0,
       },
     };
   }

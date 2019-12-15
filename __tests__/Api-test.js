@@ -3,15 +3,6 @@ import * as types from '../app/action/actionTypes';
 import passReducer from '../app/reducers/userReducer';
 import store from '../app/config/store';
 
-// describe('Actions', () => {
-//   it('Should Remove Key', () => {
-//     const expectedAction = {
-//       type: types.RESET_USER,
-//     };
-//     expect(pass.resetUserAction()).toEqual(expectedAction);
-//   });
-// });
-
 describe('Reducers', () => {
   let stateTesting = {
     loading: false,
